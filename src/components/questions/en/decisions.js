@@ -1,0 +1,123 @@
+export default [
+    {
+        id: "dec-1",
+class: "decision",
+        question: "How are you going to sustain the result?",
+    title: "decision", 
+},
+    {
+        id: "dec-2",
+class: "decision",
+        question: "Name some evidences of this subject or situation",
+    title: "decision", 
+},
+    {
+        id: "dec-3",
+class: "decision",
+        question: "Do you need help? Have you asked for it? To whom?",
+    title: "decision", 
+},
+    {
+        id: "dec-4",
+class: "decision",
+        question: "When are you going to take action?",
+    title: "decision", 
+},
+    {
+        id: "dec-5",
+class: "decision",
+        question: "What would a crazy person do in this situation?",
+    title: "decision", 
+},
+    {
+        id: "dec-6",
+class: "decision",
+        question: "What are you going to do tomorrow, next week, next month?",
+    title: "decision", 
+},
+    {
+        id: "dec-7",
+class: "decision",
+        question: "Which of your habits is holding you back? Do you want to change it?",
+    title: "decision", 
+},
+    {
+        id: "dec-8",
+class: "decision",
+        question: "How much time are you willing to tolerate this?",
+    title: "decision", 
+},
+    {
+        id: "dec-9",
+class: "decision",
+        question: "What opportunity is this subject/situation for you?",
+    title: "decision", 
+},
+    {
+        id: "dec-10",
+class: "decision",
+        question: "If you could adopt a new belief for this subject/situation, what would it be?",
+    title: "decision", 
+},
+    {
+        id: "dec-11",
+class: "decision",
+        question: "Which is the best mood you can have to relate to this subject/situation?",
+    title: "decision", 
+},
+    {
+        id: "dec-12",
+class: "decision",
+        question: "Is this situation/subject driven by pleasure or by pain?",
+    title: "decision", 
+},
+    {
+        id: "dec-13",
+class: "decision",
+        question: "Who is/are affected by your decision?",
+    title: "decision", 
+},
+    {
+        id: "dec-14",
+class: "decision",
+        question: "How are you going to measure your result? How will you know you’re moving forward?",
+    title: "decision", 
+},
+    {
+        id: "dec-15",
+class: "decision",
+        question: "If a miracle happened, and everything was solved, what will it be?",
+    title: "decision", 
+},
+    {
+        id: "dec-16",
+class: "decision",
+        question: "What are the consequences if you get what you want? And if not? Who is responsible?",
+    title: "decision", 
+},
+    {
+        id: "dec-17",
+class: "decision",
+        question: "What price do you have to pay to avoid making a choice?",
+    title: "decision", 
+},
+    {
+        id: "dec-18",
+class: "decision",
+        question: "What makes the risk worth it?",
+    title: "decision", 
+},
+    {
+        id: "dec-19",
+class: "decision",
+        question: "What have you achieved so far in this subject/situation?",
+    title: "decision", 
+},
+    {
+        id: "dec-20",
+class: "decision",
+        question: "If you had only one month left to live, what would you do?",
+    title: "decision", 
+},
+    
+]
