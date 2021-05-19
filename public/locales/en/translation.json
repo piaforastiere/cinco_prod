@@ -10,6 +10,8 @@
   "lets_play": "Let's play!",
   
   "welcome" : "Welcome",
+  "verify_email" : "Verify email",
+  "expiration_date": " days until your subscription expires",
   
   "games_played" : "Games started",
   "games_finish" : "Games finished",

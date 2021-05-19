@@ -12,6 +12,10 @@ export const ContainerDash = styled.div`
     padding: 60px 60px 40px 120px;
     min-height: calc(100vh - 70px); 
 
+    .mail{
+        color: #FFAE11;
+        margin-left: 5px;
+    }
     .spacer{
         width: 60px;
 
@@ -156,6 +160,10 @@ export const Profile = styled.div`
         font-size: 23px;
         font-weight: 200;
         margin-top: 15px;
+        
+        div{
+            display: flex;
+        }
     }
 `
 export const GamesPlayed = styled.div`

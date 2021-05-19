@@ -18,7 +18,7 @@ i18n
     // }
 
    
-    debug: true,
+    debug: false,
     lng: "es",
     fallbackLng: "es",
     interpolation: {

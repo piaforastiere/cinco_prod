@@ -13,6 +13,8 @@
     
    
     "welcome" : "Bienvenido",
+    "verify_email" : "Verificar email",
+    "expiration_date": " hasta que caduque tu subscripción",
    
     "games_played" : "Juegos comenzados",
     "games_finish" : "Juegos finalizados",

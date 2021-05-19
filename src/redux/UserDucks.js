@@ -4,12 +4,14 @@ const initialData = {
     loading: false,
     active: false,
     error: null,
+    emailVerified: null,
 }
 
 const LOADING = 'LOADING'
 const USER_ERROR = 'USER_ERROR'
 const USER_SUCCESS = 'USER_SUCCESS'
 const LOGOUT_SESSION = 'LOGOUT_SESSION'
+const CHECK_EMAIL_VERIFY = 'CHECK_EMAIL_VERIFY'
 
 
 export default function userReducer(state = initialData, action){
@@ -20,6 +22,8 @@ export default function userReducer(state = initialData, action){
             return {  ...state, error: action.payload}
         case USER_SUCCESS:
             return { ...state, loading: false, user: action.payload, active: true}
+        case CHECK_EMAIL_VERIFY:
+            return {...state, emailVerified: action.payload}
         case LOGOUT_SESSION: 
             return { ...initialData}
         default:
@@ -35,9 +39,17 @@ export const singupEmailAndPassAction = (name, email, pass) => async(dispatch) =
     try {
         
         const res = await auth.createUserWithEmailAndPassword(email, pass)
+        
+        // const log = await res.user.sendEmailVerification().then(function() {
 
+        //     }).catch(function(error) {
+                
+        //     });
+        // const send = await firebase.auth().currentUser.sendEmailVerification({
+        //       url: process.env.REACT_APP_HOST_NAME,
+        // })
+        
         const userDB = await db.collection('users').doc(res.user.email).get()
-
         
         const userObject = {
             uid: res.user.uid,
@@ -79,6 +91,7 @@ export const singupEmailAndPassAction = (name, email, pass) => async(dispatch) =
     }
 }
 
+
 export const loginWithEmailAndPassAction = (email, pass) => async(dispatch) => {
     dispatch({
         type: LOADING
@@ -86,7 +99,32 @@ export const loginWithEmailAndPassAction = (email, pass) => async(dispatch) => {
 
     try {
         const res = await auth.signInWithEmailAndPassword(email, pass)
-
+        
+        // var user = firebase.auth().currentUser;
+        
+        
+        // if (!user.emailVerified) {
+        //     // user.sendEmailVerification({
+                
+        //     //     url: process.env.REACT_APP_HOST_NAME,
+        //     // })
+            
+            
+        //     user.sendEmailVerification().then(function() {
+        //         dispatch({
+        //             type: CHECK_EMAIL_VERIFY,
+        //             payload: false
+        //         })
+        //         }).catch(function(error) {
+                    
+        //         });
+        // } else{
+        //     dispatch({
+        //         type: CHECK_EMAIL_VERIFY,
+        //         payload: true
+        //     })
+        // }
+        
         const userDB = await db.collection('users').doc(res.user.email).get()
         
         const userObject = {
@@ -138,7 +176,6 @@ export const googleLoginAction = () => async(dispatch) => {
 
         const provider = new firebase.auth.GoogleAuthProvider()
         const res = await auth.signInWithPopup(provider)
-        
 
         const userObject = {
             uid: res.user.uid,
@@ -157,6 +194,10 @@ export const googleLoginAction = () => async(dispatch) => {
             dispatch({
                 type: USER_SUCCESS,
                 payload: userDB.data()
+            })
+            dispatch({
+                type: CHECK_EMAIL_VERIFY,
+                payload: true
             })
             localStorage.setItem('user', JSON.stringify(userDB.data()))
             

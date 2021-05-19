@@ -16,16 +16,20 @@ import GamesInformation from './dashboard/GamesInformation';
 
 import { useTranslation } from "react-i18next";
 import SubscriptionPass from './dashboard/SubscriptionPass';
+import EmailVefication from './dashboard/EmailVefication';
 
 
 const Dashboard = (props) => {
 
     const user = useSelector(store => store.user.user)
+    const emailVerification = useSelector(store => store.user.emailVerified)
     const subscriptionDate = useSelector(store => store.user.user.subscriptionDate)
     const subscriptionType = useSelector(store => store.user.user.subscriptionType)
     const dispatch = useDispatch()
+    
 
     const [ subPass, setSubPass] = useState(false)
+    const [ daysLeft, setDaysLeft ] = useState(0)
     
     const checkDates = () => {
         const today = new Date()
@@ -37,6 +41,13 @@ const Dashboard = (props) => {
         if (days > 31 && subscriptionType === 'limited') {
             setSubPass(true)
         } else {
+            
+            var fechaInicio = new Date(subscriptionDate).getTime();
+            var fechaFin    = new Date(subs.setDate(subs.getDate()+ 30)).getTime();
+
+            var diff = fechaFin - fechaInicio;
+            
+            setDaysLeft(diff/(1000*60*60*24))
             setSubPass(false) 
         }
         
@@ -67,6 +78,8 @@ const Dashboard = (props) => {
 
         props.history.push('/login')
     }
+    
+   
 
     useEffect(() => {
         document.querySelector('.navbar').style.display = "flex"
@@ -76,8 +89,12 @@ const Dashboard = (props) => {
         
     },[])
     
+    console.log(subscriptionType);
+    
+    
     return !loading ? (
         <ContainerDash >
+           
             {
                 subPass && <SubscriptionPass />
             }
@@ -98,7 +115,14 @@ const Dashboard = (props) => {
                        {t('welcome')}, { user.displayName }!
                     </div>
                     <div className="user-subscription">
-                        { user.email}
+                        {
+                            subscriptionType === 'limited' ? (
+                                <div>{ daysLeft} {t('expiration_date')} </div>
+                            ) : (
+                                <div>{ user.email} - {subscriptionType} </div>
+                            )
+                        }
+                        
                     </div>
                 </div>
                 </Profile>
