@@ -173,7 +173,7 @@ const Statistics = () => {
                 />
                 <text x="18" y="20.35" className="percentage">{percentage(accQuestions).toFixed(1)}%</text>
                 </svg>
-                <p>{t('actions')}</p>
+                <p>{t('action')}</p>
             </div>
 
             <div className="single-chart">
@@ -191,7 +191,7 @@ const Statistics = () => {
                 />
                 <text x="18" y="20.35" className="percentage">{percentage(sorQuestions).toFixed(1)}% </text>
                 </svg>
-                <p>{t('sorprise')}</p>
+                <p>{t('surprise')}</p>
             </div>
             <div className="single-chart">
                 <svg viewBox="0 0 36 36" className="circular-chart decition">
@@ -208,7 +208,7 @@ const Statistics = () => {
                 />
                 <text x="18" y="20.35" className="percentage">{percentage(decQuestions).toFixed(1)}%</text>
                 </svg>
-                <p>{t('decition')}</p>
+                <p>{t('decision')}</p>
             </div>
         </StatisticsContainer>
     )

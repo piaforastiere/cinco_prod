@@ -4,10 +4,12 @@ import { googleLoginAction, singupEmailAndPassAction } from '../redux/UserDucks'
 import { withRouter } from 'react-router-dom'
 
 import { FaGoogle } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const Singup = (props) => {
 
     const dispatch = useDispatch()
+    const { t } = useTranslation();
 
     const loading = useSelector(store => store.user.loading)
     const active = useSelector(store => store.user.active)
@@ -43,35 +45,35 @@ const Singup = (props) => {
         
 
         if (!email.trim()) {
-            setError('Email is mandatory');
+            setError(t('insert_email'));
             return
         }
         const validation = !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)
         if (validation) {
-            setError('Please inset a correct email address');
+            setError(t('correct_email'));
             return
         }
         
         if (!pass.trim()) {
-            setError('Password is mandatory');
+            setError(t('mandatory_pass'));
             return
         }
         if (!pass2.trim()) {
-            setError('Please confirm your password');
+            setError(t('confirm_pass'));
             return
         }
         if (pass.length < 6) {
-            setError('The password mush be at least 6 characters');
+            setError(t('pass_lenght'));
             return
         }
 
         if (pass !== pass2) {
-            setError("Passwords doesn't match")
+            setError(t('pass_no_match'))
             return
         }
 
         if (!name.trim()) {
-            setError('name empty');
+            setError(t('insert_name'));
             return
         }
         
@@ -84,22 +86,22 @@ const Singup = (props) => {
     return (
         <div className="mt-5 text-center ">
             <h3 className="center">
-                Create a New Account
+                {t('create_new_user')}
               </h3>
               <p>
-                  Come and join our community!. Let's set up your account
+                  {t('join_community')}
               </p>
               <button className="btn"
                                 onClick={() => props.history.push('/login')}
                                 type="button" >
-                            You already have an account?
-                            <span style={{color: 'blue'}} > Sing in here</span>
+                            {t('already_have_account')}
+                            <span style={{color: 'blue'}} > {t('login_here')}</span>
                 </button>
                 
              
               <div className="row justify-content-center">
                   <div className="col-sm-12 col-md-5 justify-content-center">
-                    <p>You can also sing up with this</p>
+                    <p>{t('also_use')}</p>
                     <div className="row d-flex justify-content-center">
                     <button className="d-flex btn btn-outline-danger btn-lg w-75 justify-content-center"
                             style={{borderColor: 'red'}}
@@ -133,7 +135,7 @@ const Singup = (props) => {
                           <input 
                             type="text"
                             className="form-control mt-2"
-                            placeholder="Name"
+                            placeholder={t('name')}
                             onChange={e => setName(e.target.value)}
                             value={name} /> 
                            
@@ -146,7 +148,7 @@ const Singup = (props) => {
                         <input 
                             type="password"
                             className="form-control mt-2"
-                            placeholder="Password" 
+                            placeholder={t('password')}
                             onChange={e => setPass(e.target.value) }
                             value={pass} 
                             pattern=".{6,}"
@@ -154,17 +156,17 @@ const Singup = (props) => {
                         <input 
                             type="password"
                             className="form-control mt-2"
-                            placeholder="Confirm password" 
+                            placeholder={t('confirm_pass2')}
                             onChange={e => setPass2(e.target.value) }
                             value={pass2}
                             pattern=".{6,}"
                              />
 
-                        <p className="fw-light text-start mt-3" style={{fontSize: '10px'}} >
+                        {/* <p className="fw-light text-start mt-3" style={{fontSize: '10px'}} >
                             By submitting this form you agree to our <a href="/terms-and-conditions" > Terms and conditions</a>
-                        </p>
+                        </p> */}
                         <button className="btn btn-dark btn-lg btn-block mt-2 w-75" type="submit" >
-                            Join
+                            {t('join')}
                         </button>
                         
                         

@@ -27,7 +27,8 @@ const CreateAppointment = (props) => {
     const [ error, setError ] = useState(null)
     const [ show, setShow ] = useState(false)
 
-  
+    
+    
 
     function generatePassword() {
         var length = 8;
@@ -64,25 +65,23 @@ const CreateAppointment = (props) => {
             return
         }
         
-        
-        
         setError(null)
 
         
         dispatch(createNewGameAction(email, name, pass, user.email, user.uid, subject ))
         
-        if (errorDis === null) {
             setName('')
             setEmail('')
             setPass('')
             setSubject('')
             setShow(true)
-        }
-        
-        
-        
     }
-
+   
+   
+    console.log(dataDB);
+    
+    
+    
     
     useEffect(() => {
         document.querySelector('.navbar').style.display = "flex"
@@ -108,11 +107,11 @@ const CreateAppointment = (props) => {
                   { !show ? (
                       <div className="col-sm-12 col-md-6 col-lg-6 text-start mt-3">
                       <form onSubmit={processData}>
-                                {
+                            {/* {
                                     errorDis !== null ? (
                                         <div className="alert alert-danger"> {errorDis} </div>
                                     ) : null
-                                }
+                                } */}
                               { error && (
                                   <div className="alert alert-danger">
                                       {error}
@@ -183,7 +182,7 @@ const CreateAppointment = (props) => {
                             
                           </form>
                       </div>
-                  ): (
+                  ) : (
                     dataDB !== undefined && (
                         <div className="col-sm-12 col-md-12 col-lg-10 mt-3 text-start">
                             <SendEmail dataDB={dataDB} setShow={setShow} />

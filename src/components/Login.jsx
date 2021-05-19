@@ -39,21 +39,21 @@ const Login = (props) => {
         
 
         if (!email.trim()) {
-            setError('email empty');
+            setError(t('insert_email'));
             return
         }
         const validation = !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)
         if (validation) {
-            setError('Please inset a correct email address');
+            setError(t('correct_email'));
             return
         }
 
         if (!pass.trim()) {
-            setError('pass empty');
+            setError(t('mandatory_pass'));
             return
         }
         if (pass.length < 6) {
-            setError('pass longer than 6 characters');
+            setError(t('pass_lenght'));
             return
         }
 

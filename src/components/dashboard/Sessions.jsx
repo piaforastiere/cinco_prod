@@ -103,7 +103,7 @@ const Sessions = () => {
                                 </table>
                                 
                             ) : (
-                                <div className="no-sessions" >Seems like you haven't create any session!</div>
+                                <div className="no-sessions" > {t('no_sessions')} </div>
                             )
                         }
                     </LatestGames>

@@ -37,9 +37,9 @@ export default function gamesReducer(state = initialData, action){
         case LOADING:
             return { ...state, loading: true}
         case NEW_GAME_SUCCESS:
-            return { ...state, loading: false, game: action.payload}
+            return { ...state, loading: false, game: action.payload, error: null}
         case GET_GAMES_SUCCESS:
-            return { ...state, loading: false, games: action.payload }
+            return { ...state, loading: false, games: action.payload, error: null }
         case GAME_ERROR:
             return {  ...state, error: action.payload, loading: false}
         case INIT_SESSION_SUCCESS:

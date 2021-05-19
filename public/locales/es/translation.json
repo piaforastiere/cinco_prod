@@ -223,6 +223,17 @@
     "no_account": "¿No tienes una cuenta?", 
     "sing_here":"Regristrate aqui", 
     "also_use" : "Tambien puedes logearte con", 
-    "forget_pass" : "Olvide mi contraseña"
+    "forget_pass" : "Olvide mi contraseña",
+    "mandatory_pass": "Password is mandatory",
+    "confirm_pass" : "Por favor confirma tu contraseña",
+    "pass_lenght": "La contraseña debe tener al menos 6 caracteres",
+    "pass_no_match" : "Las contraseñas no coinciden",
+    "empty_name" : "Por favor completa tu nombre",
+    "create_new_user" : "Crear nueva cuenta",
+    "join_community" : "¡Ven y únete a nuestra comunidad !. Vamos a configurar tu cuenta",
+    "already_have_account" : "¿Ya tienes una cuenta?",
+    "login_here" : "Ir al login",
+    "join" : "Unirse",
+    "confirm_pass2" : "Confirma contraseña"
 
   }

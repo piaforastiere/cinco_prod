@@ -219,6 +219,19 @@
   "no_account": "You don't have an account?", 
   "sing_here":"Sing up here", 
   "also_use" : "You can also use", 
-  "forget_pass" : "Forget your password?"
+  "forget_pass" : "Forget your password?",
+  "mandatory_pass": "Password is mandatory",
+  "confirm_pass" : "Please confirm your password",
+  "pass_lenght": "The password mush be at least 6 characters",
+  "pass_no_match" : "Passwords doesn't match",
+  "empty_name" : "Please complete your name",
+  "create_new_user" : "Create a New Account",
+  "join_community" : "Come and join our community!. Let's set up your account",
+  "already_have_account" : "You already have an account?",
+  "login_here" : "Sing in here",
+  "join" : "Join",
+  "confirm_pass2" : "Confirm password"
+
+
 
 }
