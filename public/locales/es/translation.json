@@ -49,10 +49,11 @@
     "finished_plan" : "plan de acción",
  
     "master_name": "Nombre del master",
+    "who_is_the_master" : "quien administrara el juego",
     "master_mail": "Email del master",
     "subject_appointement" : "Puedes agregar un nombre para esta partida (opcional)",
     "generate_pass": "Generar contraseña",
-    "copy_to_play": "CREA Y COPIA LA CONTRASEÑA PARA EMPIEZAR A JUGAR",
+    "copy_to_play": "CONTRASEÑA DEL JUEGO",
     "mandatory_fields": "Todos los campos son obligatorios",
     "create" : "Crear",
     "create_new_to_play": "Crear una nueva sesión para jugar",

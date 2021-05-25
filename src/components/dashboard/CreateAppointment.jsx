@@ -39,7 +39,7 @@ const CreateAppointment = (props) => {
            result += characters.charAt(Math.floor(Math.random() * charactersLength));
         }
         setPass(result);
-        document.getElementById('button-addon1').disabled = true;
+        // document.getElementById('button-addon1').disabled = true;
      }
 
     const processData = (e) => {
@@ -85,6 +85,7 @@ const CreateAppointment = (props) => {
     
     useEffect(() => {
         document.querySelector('.navbar').style.display = "flex"
+        generatePassword()
     }, [])
     
     
@@ -119,7 +120,7 @@ const CreateAppointment = (props) => {
                               )}
     
                             <div className="mb-3">
-                                <label htmlFor="name" className="form-label"> {t('master_name')} </label>
+                                <label htmlFor="name" className="form-label"> {t('master_name')} ({t('who_is_the_master')}) </label>
                                 <input 
                                 type="text"
                                 className="form-control"
@@ -153,17 +154,17 @@ const CreateAppointment = (props) => {
                                
                             <div><p> {t('copy_to_play')} </p></div>
                             <div className="input-group mb-3 mt-2">
-                            <button className="btn btn-outline-dark" 
+                            {/* <button className="btn btn-outline-dark" 
                                     type="button" 
                                     id="button-addon1"
                                     onClick={() => generatePassword()}
                                     >
                                      {t('generate_pass')} 
-                            </button>
+                            </button> */}
                             <input type="text" 
                                    className="form-control" 
-                                   placeholder="please click on generate password"
-                                   onChange={e => setPass(e.target.value) }
+                                   placeholder={pass}
+                                   
                                    value={pass}  
                                    disabled
                                     />

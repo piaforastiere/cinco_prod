@@ -72,7 +72,7 @@ const Instructions = () => {
                         
                         <a href="#rules">
                             <p>
-                                {t('Rules')}
+                                {t('rules')}
                             </p>
                         </a>
                         <a href="#dynamics">

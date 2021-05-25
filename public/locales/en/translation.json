@@ -44,10 +44,11 @@
   "finished_plan" : "action plan",
   
   "master_name": "Master's Name",
+  "who_is_the_master" : "game administrator",
   "master_mail": "Master's email",
   "subject_appointement" : "You can add an identifier from this session (optional)",
   "generate_pass": "Generate password",
-  "copy_to_play": "CREATE & COPY THE PASSWORD TO PLAY",
+  "copy_to_play": "PASSWORD FOR THE PLAY",
   "mandatory_fields": "All fields are mandatory",
   "create" : "Create",
   "create_new_to_play": "Create a new session to play",

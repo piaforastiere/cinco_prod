@@ -81,7 +81,8 @@ const Game = () => {
         
     }, [gameData])
     
-
+    console.log('game', gameData);
+    
     return !sessionOver ? (
         <div>
             {

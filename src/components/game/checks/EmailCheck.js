@@ -22,7 +22,7 @@ const EmailCheck = () => {
     const processData = e => {
         e.preventDefault();
 
-        console.log(pass);
+        
         
         
         if (!name.trim()) {
@@ -55,6 +55,7 @@ const EmailCheck = () => {
 
         dispatch(emailCheckAction(email, pass, name))
         
+       
        
     }
 
