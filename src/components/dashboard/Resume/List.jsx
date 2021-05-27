@@ -10,7 +10,8 @@ const List = () => {
     
     const questions = useSelector(store => store.resume.questions)
     const notes = useSelector(store => store.resume.notes)
-
+    
+    
     return (
         <ListContainer>
                             
@@ -48,7 +49,7 @@ const List = () => {
                                 <ListNotes>
                                     {   notes.length > 0 &&
                                     notes.map((item, i) => (
-                                        <li className="text-break" key={i}> { item.player} : {item.note} </li>
+                                        <li className="text-break" key={i}> { item.player && (item.player + " : ")} {item.note} </li>
                                     )) 
                                     }
                                 </ListNotes>
