@@ -54,6 +54,7 @@
   "create_new_to_play": "Create a new session to play",
   "congrats" : "Congratulations!",
   "ERRORS": "erros",
+  "url_link": "Link for the game",
   
   "session": "Sessions",
   "info_of_all_sess": "Here is the information of all your finished sessions",

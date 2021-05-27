@@ -33,8 +33,8 @@ const SendEmail = ({dataDB, setShow}) => {
             setError(t('insert_subject'));
             return
         }
-
-        window.open("mailto:" + email + "?subject=" + subject+ "&body="+ dataDB.masterName + t('body_email')+ "%0D" + t('master_mail') +": " + dataDB.masterEmail+ "%0D"+t('master_name')+": " + dataDB.masterName + "%0D"+t('password')+": " +dataDB.password);
+        
+        window.open("mailto:" + email + "?subject=" + subject+ "&body="+ dataDB.masterName + t('body_email')+ "%0D" + t('master_mail') +": " + dataDB.masterEmail+ "%0D"+t('master_name')+": " + dataDB.masterName+ "%0D"+ t('url_link') +": http://play.yourfivepowers.com/game" + "%0D"+t('password')+": " +dataDB.password);
         
     }
 

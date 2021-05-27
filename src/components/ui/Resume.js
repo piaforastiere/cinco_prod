@@ -228,7 +228,7 @@ export const CloseButton = styled.div`
 `
 
 export const FinalContainer = styled.div`
-    position: absolute;
+    position: fixed;
     top: -60px;
     left: 0;
     height: ${props => `${props.h}px`};
@@ -267,9 +267,9 @@ export const Board = styled.div`
     
 `
 export const Close = styled.div`
-    position: absolute;
-    top: -8px;
-    right: 12px;
+    position: fixed;
+    top: 0px;
+    right: 0px;
     width: 50px;
     height: 50px;
     cursor: pointer;
@@ -349,7 +349,11 @@ export const CardContainer = styled.div`
         top: ${props => `${props.cardX}px`};
         left: ${props => `${props.cardY}px`};
     }
-    
+    @media screen and (max-width: 1290px) {
+        width: 280px;
+        height: 151px;
+    }
+
     @media screen and (max-width: 1024px) {
         width: 250px;
         height: 135px;

@@ -32,6 +32,13 @@ const Sessionslist = () => {
         }
         
     }, [games])
+
+    useEffect(() => {
+        if (gamesShortes.length > 0) {
+            const trash = document.querySelectorAll('.trash')
+            trash.forEach(item => item.style.display = "none")
+        }
+    }, [gamesShortes])
     
     return gamesShortes.length > 0 && (
         
@@ -69,9 +76,33 @@ const Sessionslist = () => {
                                     </tr>
                                     </thead>
                                     <tbody>
+                                        
                                         {
                                             gamesShortes.map((game, i) => {
-                                                   return <Item game={game} key={i} progress={game.progress} />
+                                                if (game.progress === 'unactive') {
+                                                   return <Item game={game} key={i} progress={t('unactive')} />
+                                                }
+                                            })
+                                        }
+                                        {   
+                                            gamesShortes.map((game, i) => {
+                                                if (game.progress === 'active') {
+                                                   return <Item game={game} key={i} progress={t('active')} />
+                                                }
+                                            })
+                                        }
+                                        {   
+                                            gamesShortes.map((game, i) => {
+                                                if (game.progress === 'action-plan') {
+                                                   return <Item game={game} key={i} progress={t('action-plan')} />
+                                                }
+                                            })
+                                        }
+                                        {   
+                                            gamesShortes.map((game, i) => {
+                                                if (game.progress === 'finished') {
+                                                   return <Item game={game} key={i} progress={t('finished')} />
+                                                }
                                             })
                                         }
                                     </tbody>

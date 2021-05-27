@@ -2,14 +2,18 @@ import React, { useState, useEffect } from 'react'
 import { Module, LatestGames, ContainerDash } from '../ui/Dashboard'
 import { Link } from 'react-router-dom'
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { IoChevronBackCircleOutline } from "react-icons/io5";
 
 import { useTranslation } from "react-i18next";
-import Item from './session list/Item';
+
 import Unfilter from './session list/Unfilter';
 import Filtered from './session list/Filtered';
+import { db } from '../../firebase';
+
+
+
 
 const Sessions = () => {
 
@@ -49,6 +53,16 @@ const Sessions = () => {
 
     }, [filter, games])
     
+    const handleDelete = async(_pass) => {
+        
+        const gameDB =  await db.collection('new-games').doc(_pass).get()
+        
+        if (gameDB.exists) {
+            await db.collection('new-games').doc(_pass).delete()
+            document.getElementById(_pass).style.display = "none"
+        } 
+        
+    }
 
     return (
         <ContainerDash>
@@ -92,12 +106,13 @@ const Sessions = () => {
                                             {t('progress')}
                                         </th>
                                         <th className="icon"></th>
+                                        
                                     </tr>
                                     </thead>
                                     {
                                         filterGames.length > 0 ? 
-                                         <Filtered games={filterGames} /> :
-                                         <Unfilter games={games} />
+                                         <Filtered handleDelete={handleDelete} games={filterGames} /> :
+                                         <Unfilter handleDelete={handleDelete} games={games} />
                                         
                                     }
                                 </table>

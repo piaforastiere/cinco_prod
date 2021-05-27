@@ -412,6 +412,10 @@ export const LatestGames = styled.div`
         }
         .icon{
             width: 20px;
+            &.trash{
+                padding-left: 10px;
+                cursor: pointer;
+            }
             svg{
                 
                 font-size: 20px;

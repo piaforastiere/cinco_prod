@@ -34,15 +34,7 @@ const List = () => {
                                         questions.map((item, i) =>(
                                             <div key={i}>
                                                 <p className="card-number" > {t('card')} {i+1} - 
-                                                    {
-                                                        item.title === "surprise" ? t('surprise') :
-                                                        item.title === "decision" ? t('decision') :
-                                                        item.title === "words" ? t('words') :
-                                                        item.title === "emo_feel" ? t('emo_feel') :
-                                                        item.title === "action" ? t('action') :
-                                                        item.title === "intuition" ? t('intuition') :
-                                                        t('thoughts') 
-                                                    }
+                                                 {item.title}
                                                 </p>
                                                
                                                 <p className="card-question">{item.question} </p>

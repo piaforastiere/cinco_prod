@@ -33,6 +33,7 @@ const GAME_STATE = 'GAME_STATE'
 const SESSION_OVER = 'SESSION_OVER'
 const ZERO_STATE = 'ZERO_STATE'
 
+
 export default function gamesReducer(state = initialData, action){
     switch (action.type) {
         case LOADING:

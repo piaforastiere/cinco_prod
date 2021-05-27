@@ -5,10 +5,14 @@ import { BiRightArrow} from "react-icons/bi";
 import { VscOpenPreview } from "react-icons/vsc";
 
 import { useTranslation } from "react-i18next";
+import { BsTrash } from 'react-icons/bs'
 
-const Item = ({game, progress}) => {
+
+const Item = ({game, progress, handleDelete}) => {
     
     const { t } = useTranslation();
+
+    
     
     return (
         <tr id={game.password} >
@@ -36,6 +40,9 @@ const Item = ({game, progress}) => {
                     )
                 }
             </td>
+            <th className="icon trash" onClick={() => handleDelete(game.password)}>
+                <BsTrash />
+            </th>
         </tr>
     )
 }
