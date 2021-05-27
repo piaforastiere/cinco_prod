@@ -138,6 +138,7 @@
     "body_email" : "Te está invitando a una sesión de Tus Cinco Poderes®. El juego que te hará explorar un tema o situación desde el poder personal.",
  
     "show_final_plan": "VER PLAN FINAL",
+    "no_show_final_plan" : "El juego ha finalizado antes de acomodar las cartas en el tablero",
     "notes" : "Notas",
     "card" : "Carta",
     "date": "Fecha",
@@ -208,7 +209,7 @@
     "action_plan_suggestions_list_three" : "Dejar de hacer, hacer y continuar haciendo",
     "action_plan_suggestions_one" : "El juego finaliza cuando se completan las dos etapas. Puede dejarse en suspenso si los participantes deciden continuar jugando en otro momento.",
     "action_plan_suggestions_two" : "Durante todo el juego cada jugador puede tomar notas en el chat del juego y descargar o guardar el entregable para tener registro de las partidas.",
-    "action_plan_suggestions_three" : " ",
+    "action_plan_suggestions_three" : "",
     "action_plan_suggestions_four" : "Deselecciona cartas haciendo click sobre la misma en la columna de la derecha",
 
     "dynamic_variables" : "VARIABLES A LA DINÁMICA DEL JUEGO",

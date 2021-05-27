@@ -72,7 +72,7 @@ export const getGameResume = (password) => async(dispatch) => {
         });
 
         
-        if (gameDB.exists && !gameDBNotes.empty && !gameDBQuestions.empty) {
+        if (gameDB.exists && !gameDBQuestions.empty) {
             const data = {
                 gameInfo: gameDB.data(),
                 notes: notes,

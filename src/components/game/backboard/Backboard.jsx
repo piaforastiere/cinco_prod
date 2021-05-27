@@ -161,6 +161,17 @@ const Backboard = () => {
             
         }
         
+        const finishedSession = async() => {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            
+            
+            db.collection('new-games').doc(password).collection('positions').doc('window').set({id: 'window', w, h})
+            positions.forEach(card => {
+                 db.collection('new-games').doc(password).collection('positions').doc(card.id).set(card)
+            }); 
+            distpatch(changeProgressAction('finished'))
+        }
     
         const backToList = () => {
             setMasterBoard(null)
@@ -182,7 +193,9 @@ const Backboard = () => {
         <div className="d-flex justify-content-center w-100 h-100" >
             <BoardContainer>
                 <Board style={i18n.language === "en" ? bgBoard : bgBoardES} id="final-bg">
-                    <InstructionsAP />
+                    {
+                        progressDB !== 'finished' && <InstructionsAP />
+                    }
                     
                     {   
                         progressDB === 'finished-plan' && (
@@ -194,7 +207,7 @@ const Backboard = () => {
                                         <button className="btn btn-outline-success rounded-pill text-uppercase " style={{zIndex: '1000', padding: '10px 30px'}} onClick={() => showBoard()} >
                                             {t('share_others')}
                                         </button>
-                                        <button id="finish-button" className="btn btn-light rounded-pill  text-uppercase" style={{zIndex: '1000', padding: '10px 30px'}} onClick={() => distpatch(changeProgressAction('finished'))} >
+                                        <button id="finish-button" className="btn btn-light rounded-pill  text-uppercase" style={{zIndex: '1000', padding: '10px 30px'}} onClick={() => finishedSession()} >
                                             {t('finished_session')}
                                         </button>
                                     </div>

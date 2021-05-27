@@ -56,7 +56,6 @@ const ResumeMaster = ({ positions, setPositions}) => {
 
     return (
         <ResumeMasterContainer>
-
             {
                 selectedQuestions.map((card, i) => {
                     return <Draggable onDrag={(e, data) => trackPos(data, card)} key={i} >

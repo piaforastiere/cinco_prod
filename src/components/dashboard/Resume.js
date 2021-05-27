@@ -34,10 +34,12 @@ export const Resume = () => {
     const intViewportWidth = window.innerWidth;
     const intViewportHeight= window.innerHeight;
     
+    const positions = useSelector(store => store.resume.positions)
     
     useEffect(() => {
 
         dispatch(getGameResume(id))
+        
         
         
     }, [dispatch, id])
@@ -52,6 +54,8 @@ export const Resume = () => {
         }
     }, [close])
 
+    
+    console.log(positions);
     
     
     return !loading && gameInfo !== null ?  (
@@ -71,10 +75,21 @@ export const Resume = () => {
                                 <div style={{ width: '250px', height: '50px'}} >
                                     { 
                                         windowDB !== undefined && windowDB !== null && windowDB.length > 0 && (
-                                            <button  type="button" className="btn btn-dark rounded-pill fs-5" style={{ padding : '10px 30px'}} onClick={() => setClose(!close)} >
-                                                <strong> {t('show_final_plan')}</strong>
-                                            </button>
+                                            <div>
+                                               { 
+                                                    positions.length > 0 ? (
+                                                        <button  type="button" className="btn btn-dark rounded-pill fs-5" style={{ padding : '10px 30px'}} onClick={() => setClose(!close)} >
+                                                            <strong> {t('show_final_plan')}</strong>
+                                                        </button>
+                                                        ) : (
+                                                        <button  type="button" className="" style={{ padding : '10px 30px'}} onClick={() => setClose(!close)} >
+                                                            <strong> {t('no_show_final_plan')}</strong>
+                                                        </button>
+                                                    ) 
+                                                }
+                                            </div>
                                         )
+                                        
                                     }
                                 </div>
                                 
