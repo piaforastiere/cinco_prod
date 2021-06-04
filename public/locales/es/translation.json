@@ -8,6 +8,7 @@
     "language": "Cambiar idioma",
     "reset_password" : "Resetear Contraseña",
     "reset": "Resetear",
+    "shop": "Tienda", 
 
     "lets_play": "A jugar!",
     
@@ -216,7 +217,7 @@
     "stages" : "etapas",
     "suggestions" : "Sugerencias",
 
-    "sorry_msg" : "Lo sentimos pero su subscripción ha caducado",
+    "sorry_msg" : "Lo sentimos pero tu subscripción ha caducado",
 
     "login" : "Login",
     "welcome_comunity": "Bienvenido a nuestra comunidad!. ",
@@ -251,6 +252,7 @@
     "we_are_sorry" : "Lo sentimos, pero este plan no esta disponible para ti.",
     "try_others" : "Por favor intenta con los otros",
     "expiration_date": " hasta que caduque tu subscripción",
-    "see_plans" : "Todos los planes de subscripción"
+    "see_plans" : "Todos los planes de subscripción",
+    "check_plans" : "¡Mira los planes que tenemos!"
 
   }

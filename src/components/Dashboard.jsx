@@ -42,8 +42,8 @@ const Dashboard = (props) => {
     
 
     useEffect(() => {
-
-       if (user !== undefined) {
+        
+       if (user !== undefined && user.payPalId !== null) {
           
         const call =  axios({
             url: 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/'+user.payPalId,
@@ -88,6 +88,7 @@ const Dashboard = (props) => {
     
     return !loading ? (
         <ContainerDash >
+            
             {
                 subPass && <SubscriptionPass />
             }

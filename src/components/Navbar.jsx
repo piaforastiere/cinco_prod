@@ -80,7 +80,9 @@ const Navbar = (props) => {
                         <NavLink className="btn btn-dark me-2 text-uppercase" to="/instructions" exact>
                             {t("instructions")}
                         </NavLink>
-         
+                        <NavLink className="btn btn-dark me-2 text-uppercase" to="/shop" exact>
+                            {t('shop')}
+                        </NavLink>
                         <button className="btn btn-dark me-2 text-uppercase"
                                 onClick={() => logout()}
                                 >
@@ -103,6 +105,9 @@ const Navbar = (props) => {
                     {/* <NavLink className="btn btn-dark me-2 text-uppercase" to="/instructions" exact>
                         {t("instructions")}
                     </NavLink> */}
+                    <NavLink className="btn btn-dark me-2 text-uppercase" to="/shop" exact>
+                        {t('shop')}
+                    </NavLink>
                     <NavLink className="btn btn-dark me-2 text-uppercase" to="/login" exact>
                         Login
                     </NavLink>

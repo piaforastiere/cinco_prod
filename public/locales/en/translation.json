@@ -6,6 +6,7 @@
   "play": "PLAY",
   "singup": "Singup",
   "language": "Change language",
+  "shop": "Shop",
 
   "lets_play": "Let's play!",
   
@@ -247,8 +248,8 @@
   "we_are_sorry" : "We are sorry but this plan is not available for you.",
   "try_others" : "Please try with the others",
   "expiration_date": " till your subscription expired",
-  "see_plans" : "All subscription plans"
-  
+  "see_plans" : "All subscription plans",
+  "check_plans" : "You can check all the plans that we have!"
 
 
 }

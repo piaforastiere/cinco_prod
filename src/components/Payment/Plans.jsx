@@ -23,7 +23,7 @@ const Plans = ({setIdPlan, setAmout, setPhase, user}) => {
     return (
         <PlansContainer>
             {   
-                user === undefined && (
+                user === undefined ? (
                     <Plan onClick={() => {history.push("/singup")}}>
                         <div className="background free">
                             <div className="icon">
@@ -53,14 +53,7 @@ const Plans = ({setIdPlan, setAmout, setPhase, user}) => {
                         </div>
                         </div>
                     </Plan>
-                )
-
-                
-            }
-
-            {
-                user !== undefined && user.subscriptionType === "limited" && (
-                        <Plan className="block">
+                ): ( <Plan className="block">
                             <div className="background free">
                             <div className="icon">
                                 <RiBikeLine className="span" />
