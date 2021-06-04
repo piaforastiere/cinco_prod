@@ -28,6 +28,7 @@ import { Resume } from './components/dashboard/Resume';
 import Instructions from './components/Instructions';
 import LanguageSelector from './components/LanguageSelector'
 import Home from './components/Home';
+import Payment from './components/Payment';
 
 
 function App() {
@@ -89,6 +90,7 @@ function App() {
             <Route exact component={Game} path="/game"  />
             <Route exact component={ResetPass} path="/reset"  />
             <Route exact component={Terms} path="/terms-and-conditions"  />
+            <Route exact component={Payment} path="/payment"  />
             <Route exact component={Home} path="/"  />
             
           </Switch>

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Spinner from './Spinner'
 import { getAllGamesAction, returnToZeroState } from '../redux/gamesDukes'
 
-
+import axios from 'axios';
 
 import { ContainerDash, Profile } from './ui/Dashboard'
 import emptyPhoto from '../assets/img/empty-photo.png'
@@ -25,27 +25,61 @@ const Dashboard = (props) => {
     const subscriptionType = useSelector(store => store.user.user.subscriptionType)
     const dispatch = useDispatch()
 
-    const [ subPass, setSubPass] = useState(false)
+    console.log('user', user);
     
-    const checkDates = () => {
+
+    const [ subPass, setSubPass] = useState(false)
+    const [ lastPay, setLastPay ] = useState(null)
+    
+    const checkDates = (_date) => {
         const today = new Date()
-        const subs = new Date(subscriptionDate)
+        const subs = new Date()
 
         var difference= Math.abs(today-subs);
         const days = difference/(1000 * 3600 * 24)
         
         if (days > 31 && subscriptionType === 'limited') {
             setSubPass(true)
-        } else {
+        } 
+        if (days > 31 && subscriptionType === 'month') {
+            setSubPass(true)
+        }
+        if (days > 365 && subscriptionType === 'annual') {
+            setSubPass(true)
+        } 
+        if (subscriptionType === "unlimited") {
             setSubPass(false) 
         }
-        
         
     }
 
     const loading = useSelector(store => store.games.loading)
     
     const { t } = useTranslation();
+
+    
+
+    useEffect(() => {
+
+       if (user !== undefined) {
+          
+        const call =  axios({
+            url: 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/'+user.payPalId,
+            method: 'get',
+            headers: { "Content-Type": "application/json", "Authorization": "Bearer A21AAKDQtdWliyBLJ1Gj7Zw84df3rKQX3kcKA4gy_5zN3qrB2oJ1aLoLWmuMz_s2ViFVWgnL9NAxeR5N-LvEHIkhzrT3Nsy0Q" },
+            data: { "reason": "test -- Not satisfied with the service" }
+        }).then(res => {
+                console.log('axios', res.data.billing_info.last_payment.time)
+                setLastPay(res.data.billing_info.last_payment.time)
+            }).catch(error => {
+                console.log(error);
+                setLastPay(null)
+              });
+       }
+        
+        
+            
+      }, [user])
 
     useEffect(() => {
         
@@ -56,8 +90,11 @@ const Dashboard = (props) => {
 
     useEffect(() => {
 
-        if (subscriptionDate !== undefined && subscriptionDate !== null) {
-            checkDates()
+        if (lastPay !== null) {
+            checkDates(lastPay)
+        }
+        if (subscriptionDate !== undefined && subscriptionDate !== null ) {
+            checkDates(subscriptionDate)
         }
 
     }, [subscriptionDate, checkDates])

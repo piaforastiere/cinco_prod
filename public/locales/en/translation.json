@@ -230,8 +230,19 @@
   "already_have_account" : "You already have an account?",
   "login_here" : "Sing in here",
   "join" : "Join",
-  "confirm_pass2" : "Confirm password"
+  "confirm_pass2" : "Confirm password",
 
+  "plans_title" : "Flexible Plans & Pricing",
+  "plans_text" : "Select plan that better suits your necesities",
+  "basic": "Free trial",
+  "trial" : "30 days",
+  "monthly" : "monthly",
+  "per_month" : "per month",
+  "annual" : "annual",
+  "per_year" : "per year",
+  "one_time" : "one time only",
+  "active_subscription" : "active subscription"
+  
 
 
 }

@@ -27,7 +27,9 @@ export default function userReducer(state = initialData, action){
     }
 }
 
-export const singupEmailAndPassAction = (name, email, pass) => async(dispatch) => {
+
+
+export const singupEmailAndPassAction = (name, email, pass, plan, payPalId) => async(dispatch) => {
     dispatch({
         type: LOADING
     })
@@ -45,7 +47,8 @@ export const singupEmailAndPassAction = (name, email, pass) => async(dispatch) =
             photoURL: res.user.photoURL,
             displayName: name,
             subscriptionDate: res.user.metadata.creationTime,
-            subscriptionType: 'limited',
+            subscriptionType: plan,
+            payPalId: payPalId,
         }
 
     
@@ -310,6 +313,38 @@ export const editProfilePhotoAction = (newImg) => async(dispatch, getState) => {
             payload: updatedUser
         })
 
+        localStorage.setItem('user', JSON.stringify(updatedUser))
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+export const updateUserSubscription = (email, plan, payPalId) => async(dispatch, getState) => {
+    dispatch({
+        type: LOADING
+    })
+    const { user } = getState().user
+    console.log('actu');
+    
+    try {
+
+        await db.collection('users').doc(email).update({
+            subscriptionType: plan,
+            payPalId: payPalId
+        })
+
+        const updatedUser = {
+            ...user,
+            subscriptionType: plan,
+            payPalId: payPalId
+        }
+
+        dispatch({
+            type: USER_SUCCESS,
+            payload: updatedUser
+        })
+        
         localStorage.setItem('user', JSON.stringify(updatedUser))
     } catch (error) {
         console.log(error);

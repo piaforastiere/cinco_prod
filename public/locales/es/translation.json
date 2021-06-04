@@ -234,6 +234,17 @@
     "already_have_account" : "¿Ya tienes una cuenta?",
     "login_here" : "Ir al login",
     "join" : "Unirse",
-    "confirm_pass2" : "Confirma contraseña"
+    "confirm_pass2" : "Confirma contraseña",
+
+    "plans_title" : "Planes y precios flexibles",
+    "plans_text" : "Elije el plan que mejor se adapte a tus necesidades",
+    "basic": "gratis",
+    "trial" : "30 días",
+    "monthly" : "mensual",
+    "per_month" : "por mes",
+    "annual" : "anual",
+    "per_year" : "por año",
+    "one_time" : "valido solo una vez",
+    "active_subscription" : "subscripcion activa"
 
   }
