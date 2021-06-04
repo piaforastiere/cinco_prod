@@ -50,15 +50,7 @@ const Payment = () => {
                     </>
                 )
             }
-            {
-                phase === 2 && (
-                    <div>
-                        <Link to="/dashboard" className="back-icon" >
-                            <IoChevronBackCircleOutline /> <span> {t('back_to_dash')} </span>
-                        </Link>
-                    </div>
-                )
-            }
+            
             
             </div>
             

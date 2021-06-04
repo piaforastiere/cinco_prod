@@ -6,22 +6,23 @@ import { googleLoginAction, singupEmailAndPassAction } from '../../redux/UserDuc
 import { FaGoogle } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import PayPalBtn from './PayPalBtnMon';
+import { Title, FormContainer } from '../ui/Payment';
 
 const RegistrationForm = ({idPlan, amount}) => {
     
     const { t } = useTranslation();
 
     const user = useSelector(store => store.user.user)
-    const errorDis = useSelector(store => store.user.error)
     
-    
-    
-    const [ userName, setUserName ] = useState('')
-    const [ email, setEmail ] = useState('')
-    const [ pass, setPass ] = useState('')
-    const [ pass2, setPass2 ] = useState('')
+    const [ userName, setUserName ] = useState(null)
+    const [ email, setEmail ] = useState(null)
+    const [ pass, setPass ] = useState(null)
+    const [ pass2, setPass2 ] = useState(null)
     const [ plan, setPlan ] = useState('limited')
-    const [ error, setError ] = useState(null)
+    const [ errorName, setErrorName ] = useState(null)
+    const [ errorPass, setErrorPass ] = useState(null)
+    const [ errorEmail, setErrorEmail ] = useState(null)
+    const [ errorPassSec, setErrorPassSec ] = useState(null)
     
     useEffect(() => {
         document.querySelector('.navbar').style.display = "flex"
@@ -46,118 +47,99 @@ const RegistrationForm = ({idPlan, amount}) => {
         
     },[])
 
-
-
-    const processData = e => {
-        e.preventDefault();
-
-        
-
-        if (!email.trim()) {
-            setError(t('insert_email'));
-            return
-        }
+    const checkEmail = () => {
         const validation = !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)
-        if (validation) {
-            setError(t('correct_email'));
+        if (!email.trim()) {
+            setErrorEmail(t('insert_email'));
             return
+        } else if (validation) {
+            setErrorEmail(t('correct_email'));
+            return
+        } else {
+            setErrorEmail(null)
         }
+    }
 
+    const checkName = () => {
         if (!userName.trim()) {
-            setError(t('insert_name'));
+            setErrorName(t('insert_name'));
             return
+        } else {
+            setErrorName(null)
         }
+    }
 
-        
-            if (!pass.trim()) {
-                setError(t('mandatory_pass'));
-                return
-            }
+    const checkPass = () => {
+        if (!pass.trim()) {
+            setErrorPass(t('mandatory_pass'));
+            return
+        } else if (pass.length < 6) {
+            setErrorPass(t('pass_lenght'));
+            return
+        } else {
+            setErrorPass(null)
+        }
+    }
+
+    const checkPassSecond = () => {
             if (!pass2.trim()) {
-                setError(t('confirm_pass'));
+                setErrorPassSec(t('confirm_pass'));
                 return
-            }
-            if (pass.length < 6) {
-                setError(t('pass_lenght'));
+            } else if (pass !== pass2) {
+                setErrorPassSec(t('pass_no_match'))
                 return
-            }
-    
-            if (pass !== pass2) {
-                setError(t('pass_no_match'))
-                return
+            } else {
+                setErrorPassSec(null)
             }
 
-            // dispatch(singupEmailAndPassAction(name, email, pass, plan))
-        
-        
-        setError(null)
-
-        
-        
-        
     }
     
     
 
     return (
-        <div className="mt-5 text-center ">
+        <>
            
-            
+           <Title>
                 <h3>{t('create_new_user')}</h3>
               
               <p>
                   {t('join_community')}
               </p>
-              
+           </Title>
                 
-             
-              <div className="row justify-content-center">
+              <FormContainer className="row justify-content-center">
                   
                   <div className="">
-                  <form onSubmit={processData}>
+                  <form >
                             {
-                                errorDis !== null ? (
-                                    <div className="alert alert-danger"> {errorDis} </div>
+                                errorName !== null ? (
+                                    <div className="alert alert-danger"> {errorName} </div>
+                                ) : errorEmail !== null ? (
+                                    <div className="alert alert-danger"> {errorEmail} </div>
+                                ) : errorPass !== null ? (
+                                    <div className="alert alert-danger"> {errorPass} </div>
+                                ) : errorPassSec !== null ? (
+                                    <div className="alert alert-danger"> {errorPassSec} </div>
                                 ) : null
                             }
-                          { error && (
-                              <div className="alert alert-danger">
-                                  {error}
-                              </div>
-                          )}
+                          
 
-                        {
-                            user !== undefined ? (
-                                <>
-                                    <input 
-                                        type="text"
-                                        className="form-control mt-2"
-                                        placeholder={user.displayName}
-                                        onChange={e => setUserName(e.target.value)}
-                                        value={userName} /> 
-                                    
-                                    <input 
-                                        type="email"
-                                        className="form-control mt-2"
-                                        placeholder={user.email}
-                                        onChange={e => setEmail(e.target.value) } 
-                                        value={email} />
-                                </>
-                            ) : (
-                                <>
+                        
                                 <input 
                                     type="text"
                                     className="form-control mt-2"
                                     placeholder={t('name')}
                                     onChange={e => setUserName(e.target.value)}
-                                    value={userName} /> 
+                                    value={userName} 
+                                    onBlur={() => checkName()}/> 
                                 
                                 <input 
                                     type="email"
                                     className="form-control mt-2"
                                     placeholder="Email: example@example.com"
                                     onChange={e => setEmail(e.target.value) } 
-                                    value={email} />
+                                    value={email} 
+                                    onBlur={() => checkEmail()}/>
                                 <input 
                                     type="password"
                                     className="form-control mt-2"
@@ -165,6 +147,7 @@ const RegistrationForm = ({idPlan, amount}) => {
                                     onChange={e => setPass(e.target.value) }
                                     value={pass} 
                                     pattern=".{6,}"
+                                    onBlur={() => checkPass()}
                                     />
                                 <input 
                                     type="password"
@@ -173,31 +156,31 @@ const RegistrationForm = ({idPlan, amount}) => {
                                     onChange={e => setPass2(e.target.value) }
                                     value={pass2}
                                     pattern=".{6,}"
+                                    onBlur={() => checkPassSecond()}
                                     />
-                                </>
-                            )
+                                
+                          {
+                              userName !== null && email !==null && pass !== null && pass2 !== null && errorEmail === null && errorName === null && errorPass === null && errorPassSec === null && (
+                                <div className="button">
+                                <PayPalBtn
+                                        amount = {amount}
+                                        currency = "USD"
+                                        idPlan={idPlan}
+                                        email={email}
+                                        plan={plan}
+                                        pass={pass}
+                                        userName={userName}
+                                    />
+                              </div>
+                              )
+                          }
 
-                        }
-                          
-
-                          <PayPalBtn
-                                amount = {amount}
-                                currency = "USD"
-                                idPlan={idPlan}
-                                email={email}
-                                plan={plan}
-                                pass={pass}
-                                userName={userName}
-                            />
-                        
-                        
-                        
                       </form>
                   </div>
                  
-              </div>
+              </FormContainer>
             
-        </div>
+        </>
     )
 }
 

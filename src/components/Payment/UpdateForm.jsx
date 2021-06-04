@@ -13,6 +13,7 @@ import { FormContainer, Title } from '../ui/Payment'
 const UpdateForm = ({user, idPlan, amount, setPhase}) => {
     
     //CHEQUEAR EL PAYPALID Y LA FECHA DEL ULTIMO PAGO!!
+    console.log(idPlan);
     
     const { t } = useTranslation();
 
@@ -35,7 +36,7 @@ const UpdateForm = ({user, idPlan, amount, setPhase}) => {
         }
 
         if (idPlan === "P-9LX457058K3795810MCXNTEA") {
-            setPlan("month")
+            setPlan("monthly")
         }
         if (idPlan === "P-5JF92675B7261882CMCXNPKQ") {
             setPlan("annual")
@@ -46,15 +47,16 @@ const UpdateForm = ({user, idPlan, amount, setPhase}) => {
         
     },[])
 
+   console.log(plan, user.subscriptionType);
    
 
     return (
         <>
                   <Title>
-                    <h2>verify data</h2>
+                    <h2>{t('verify_data')}</h2>
               
                     <p>
-                        si esta no es la cuenta desloguate
+                        {t('verify_data_text')}
                     </p>
                   </Title>
               
@@ -88,19 +90,30 @@ const UpdateForm = ({user, idPlan, amount, setPhase}) => {
                                         defaultValue={user.email}
                                         name="email" 
                                         readOnly />
-                            
-                          <div className="button">
-                          <PayPalBtn
-                                amount = {amount}
-                                currency = "USD"
-                                idPlan={idPlan}
-                                email={email}
-                                plan={plan}
-                                userName={userName}
-                                setError={setError}
-                                setPhase={setPhase}
-                            />
-                          </div>
+                                    
+                                    {
+                                        idPlan !== "free" && plan !== user.subscriptionType ? (
+                                            <div className="button">
+                                                <PayPalBtn
+                                                    amount = {amount}
+                                                    currency = "USD"
+                                                    idPlan={idPlan}
+                                                    email={email}
+                                                    plan={plan}
+                                                    userName={userName}
+                                                    setError={setError}
+                                                    setPhase={setPhase}
+                                                />
+                                            </div>
+                                        ) : (
+                                            <p className="no-available">
+                                                {t('we_are_sorry')} <br/>
+                                                {t('try_others')}
+                                            </p>
+                                        )
+                                    }  
+                                    
+                          
                       </form>
                   </div>
                  

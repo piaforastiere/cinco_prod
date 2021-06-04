@@ -16,6 +16,7 @@ import GamesInformation from './dashboard/GamesInformation';
 
 import { useTranslation } from "react-i18next";
 import SubscriptionPass from './dashboard/SubscriptionPass';
+import DaysCounter from './dashboard/DaysCounter';
 
 
 const Dashboard = (props) => {
@@ -31,27 +32,8 @@ const Dashboard = (props) => {
     const [ subPass, setSubPass] = useState(false)
     const [ lastPay, setLastPay ] = useState(null)
     
-    const checkDates = (_date) => {
-        const today = new Date()
-        const subs = new Date()
-
-        var difference= Math.abs(today-subs);
-        const days = difference/(1000 * 3600 * 24)
-        
-        if (days > 31 && subscriptionType === 'limited') {
-            setSubPass(true)
-        } 
-        if (days > 31 && subscriptionType === 'month') {
-            setSubPass(true)
-        }
-        if (days > 365 && subscriptionType === 'annual') {
-            setSubPass(true)
-        } 
-        if (subscriptionType === "unlimited") {
-            setSubPass(false) 
-        }
-        
-    }
+    
+    
 
     const loading = useSelector(store => store.games.loading)
     
@@ -88,16 +70,7 @@ const Dashboard = (props) => {
 
     },[dispatch])
 
-    useEffect(() => {
-
-        if (lastPay !== null) {
-            checkDates(lastPay)
-        }
-        if (subscriptionDate !== undefined && subscriptionDate !== null ) {
-            checkDates(subscriptionDate)
-        }
-
-    }, [subscriptionDate, checkDates])
+    
 
     const logout = () => {
         dispatch(logOutAction())
@@ -135,7 +108,7 @@ const Dashboard = (props) => {
                        {t('welcome')}, { user.displayName }!
                     </div>
                     <div className="user-subscription">
-                        { user.email}
+                        <DaysCounter subscriptionDate={subscriptionDate} lastPay={lastPay} setSubPass={setSubPass} subscriptionType={subscriptionType} />
                     </div>
                 </div>
                 </Profile>

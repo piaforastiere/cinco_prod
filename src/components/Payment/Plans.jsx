@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { useHistory } from "react-router-dom"
 import { useTranslation } from "react-i18next";
 import { Plan, PlansContainer } from '../ui/Payment'
 
@@ -11,9 +12,9 @@ import { RiBikeLine, RiEBike2Line, RiCarLine } from "react-icons/ri";
 const Plans = ({setIdPlan, setAmout, setPhase, user}) => {
 
     const { t } = useTranslation();
+    let history = useHistory();
     
     const handleClick = (_price, _idPlan) => {
-        
         setIdPlan(_idPlan)
         setAmout(_price)
         setPhase(1)
@@ -21,40 +22,9 @@ const Plans = ({setIdPlan, setAmout, setPhase, user}) => {
    
     return (
         <PlansContainer>
-            
             {   
-                user.subscriptionType === "limited" ? (
-                    <Plan className="block">
-                        <div className="background free">
-                        <div className="icon">
-                            <RiBikeLine className="span" />
-                            <RiBikeLine />
-                        </div>
-                        <div className="name">
-                            {t('basic')}
-                        </div>
-                    </div>
-                    <div className="row">
-                    <div className="price">
-                        <p>u<MdAttachMoney/> 
-                            0 <span>00</span> 
-                        </p>
-                        <div className="line"></div>
-                        <p className="time"> 
-                            {t('trial')}
-                        </p>
-                    </div>
-                    <div className="description">
-                        <ul>
-                            <li>{t('active_subscription')}</li>
-                            <li>lorem ipsum</li>
-                            <li>lorem ipsum</li>
-                        </ul>
-                    </div>
-                    </div>
-                </Plan>
-                ) : (
-                    <Plan onClick={() => handleClick(0, "free")}>
+                user === undefined && (
+                    <Plan onClick={() => {history.push("/singup")}}>
                         <div className="background free">
                             <div className="icon">
                                 <RiBikeLine className="span" />
@@ -87,6 +57,42 @@ const Plans = ({setIdPlan, setAmout, setPhase, user}) => {
 
                 
             }
+
+            {
+                user !== undefined && user.subscriptionType === "limited" && (
+                        <Plan className="block">
+                            <div className="background free">
+                            <div className="icon">
+                                <RiBikeLine className="span" />
+                                <RiBikeLine />
+                            </div>
+                            <div className="name">
+                                {t('basic')}
+                            </div>
+                        </div>
+                        <div className="row">
+                        <div className="price">
+                            <p>u<MdAttachMoney/> 
+                                0 <span>00</span> 
+                            </p>
+                            <div className="line"></div>
+                            <p className="time"> 
+                                {t('trial')}
+                            </p>
+                        </div>
+                        <div className="description">
+                            <ul>
+                                <li>{t('active_subscription')}</li>
+                                <li>lorem ipsum</li>
+                                <li>lorem ipsum</li>
+                            </ul>
+                        </div>
+                        </div>
+                    </Plan>
+                )
+            }
+            
+            
             
             <Plan onClick={() => handleClick(9.99, "P-9LX457058K3795810MCXNTEA")}>
                 <div className="background month">

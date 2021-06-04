@@ -44,14 +44,15 @@ export const PlansContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: -80px;
-    padding: 0 100px;
+    margin-top: -60px;
+    padding: 0 80px;
+
 `
 
 export const Plan = styled.div`
     cursor: pointer;
     border-radius: 30px;
-    width: 33%;
+    width: 32%;
     z-index: 1;
     overflow: hidden;
     background-color: #fff;
@@ -212,5 +213,15 @@ export const FormContainer = styled.div`
         width: 400px;
         margin: auto;
         margin-top: 30px;
+
+        
+    }
+
+    .no-available{
+        width: 90%;
+        color: red;
+        text-align: center;
+        font-size: 18px;
+        margin: auto;
     }
 `

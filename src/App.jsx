@@ -90,7 +90,7 @@ function App() {
             <Route exact component={Game} path="/game"  />
             <Route exact component={ResetPass} path="/reset"  />
             <Route exact component={Terms} path="/terms-and-conditions"  />
-            <Route exact component={Payment} path="/payment"  />
+            <Route exact component={Payment} path="/shop"  />
             <Route exact component={Home} path="/"  />
             
           </Switch>

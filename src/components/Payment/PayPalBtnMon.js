@@ -8,7 +8,7 @@ import { singupEmailAndPassAction, updateUserSubscription } from '../../redux/Us
 
 
 
-const PayPalBtn = ({ amount, currency, idPlan, setIdPlan, plan, userName, pass, email, setError, setPhase}) => {
+const PayPalBtn = ({ amount, currency, idPlan, setIdPlan, plan, userName, pass, email, setError }) => {
 
     
     const user = useSelector(store => store.user.user)
@@ -26,8 +26,8 @@ const PayPalBtn = ({ amount, currency, idPlan, setIdPlan, plan, userName, pass, 
     const [ approved, setApproved ] = useState(false)
     const [ payPalId, setPayPalId ] = useState(null)
 
+   
     const createSubscription = (data, actions) => {
-        
         
         return actions.subscription.create({
         'plan_id': idPlan,
@@ -39,11 +39,13 @@ const PayPalBtn = ({ amount, currency, idPlan, setIdPlan, plan, userName, pass, 
         if (approved) {
             if (user !== undefined) {
                 dispatch(updateUserSubscription(email, plan, payPalId ))
+                history.push("/dashboard");
             } else {
-                dispatch(singupEmailAndPassAction(email, pass, plan, userName, payPalId))
+                
+                dispatch(singupEmailAndPassAction(userName, email, pass, plan, payPalId))
                 history.push("/dashboard");
             }
-            setPhase(2)
+            
         }
         
     }, [approved])

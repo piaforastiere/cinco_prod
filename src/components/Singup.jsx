@@ -80,7 +80,7 @@ const Singup = (props) => {
         setError(null)
 
         
-        dispatch(singupEmailAndPassAction(name, email, pass))
+        dispatch(singupEmailAndPassAction(name, email, pass, "limited"))
         
     }
     return (

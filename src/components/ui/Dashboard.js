@@ -12,6 +12,13 @@ export const ContainerDash = styled.div`
     padding: 60px 60px 40px 120px;
     min-height: calc(100vh - 70px); 
 
+    .plans-link{
+        color: #f6ce55;
+        font-weight: 500;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 16px;
+    }
     .spacer{
         width: 60px;
 

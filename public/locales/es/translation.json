@@ -245,6 +245,12 @@
     "annual" : "anual",
     "per_year" : "por año",
     "one_time" : "valido solo una vez",
-    "active_subscription" : "subscripcion activa"
+    "active_subscription" : "subscripcion activa",
+    "verify_data" : "Por favor verifica tus datos",
+    "verify_data_text" : "Si los datos no son los correctos, deslogueate e ingresa con la cuenta correcta",
+    "we_are_sorry" : "Lo sentimos, pero este plan no esta disponible para ti.",
+    "try_others" : "Por favor intenta con los otros",
+    "expiration_date": " hasta que caduque tu subscripción",
+    "see_plans" : "Todos los planes de subscripción"
 
   }
