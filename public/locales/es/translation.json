@@ -4,6 +4,7 @@
     "instructions" : "Instrucciones",
     "logout": "Salir",
     "play": "JUGAR",
+    "play_code" : "JUGAR CON CODIGO",
     "singup": "Crear cuenta",
     "language": "Cambiar idioma",
     "reset_password" : "Resetear Contraseña",

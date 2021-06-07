@@ -108,15 +108,17 @@ const Navbar = (props) => {
                     <NavLink className="btn btn-dark me-2 text-uppercase" to="/shop" exact>
                         {t('shop')}
                     </NavLink>
+                    
                     <NavLink className="btn btn-dark me-2 text-uppercase" to="/login" exact>
                         Login
                     </NavLink>
-                    <NavLink className="btn btn-dark me-2 text-uppercase sing-in" to="/singup" exact>
+                    <NavLink className="btn btn-light me-2 rounded-pill text-uppercase" style={{ width: '150px', fontWeight: 500, color: '#fff', backgroundColor: '#F15951', borderColor: '#C94C44'}} to="/singup" exact>
                         {t("singup")}
                     </NavLink>
-                    <NavLink className="btn btn-light me-2 rounded-pill" style={{ width: '150px', fontWeight: 500, color: '#fff', backgroundColor: '#F15951', borderColor: '#C94C44'}} to="/game" exact>
-                            {t("play")}
+                    <NavLink className="btn btn-dark me-2 text-uppercase sing-in"  to="/game" exact>
+                            {t("play_code")}
                     </NavLink>
+                    
                     {/* <NavLink className="btn btn-light me-2 rounded-pill" style={{ width: '150px'}} to="/game" exact>
                         {t("play")}
                     </NavLink> */}
