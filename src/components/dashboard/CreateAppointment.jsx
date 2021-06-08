@@ -13,7 +13,7 @@ const CreateAppointment = (props) => {
 
     const loading = useSelector(store => store.games.loading)
     
-    const errorDis = useSelector(store => store.games.error)
+    // const errorDis = useSelector(store => store.games.error)
     const {user} = useSelector(store => store.user)
     const dataDB = useSelector(store => store.games.game)
     

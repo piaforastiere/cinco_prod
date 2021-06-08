@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { googleLoginAction, singupEmailAndPassAction } from '../../redux/UserDucks'
 
-
-import { FaGoogle } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import PayPalBtn from './PayPalBtnMon';
 import { FormContainer, Title } from '../ui/Payment'
@@ -45,10 +41,8 @@ const UpdateForm = ({user, idPlan, amount, setPhase}) => {
             setPlan("limited")
         }
         
-    },[])
+    },[idPlan, user, email])
 
-   console.log(plan, user.subscriptionType);
-   
 
     return (
         <>

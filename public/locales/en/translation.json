@@ -250,7 +250,8 @@
   "try_others" : "Please try with the others",
   "expiration_date": " till your subscription expired",
   "see_plans" : "All subscription plans",
-  "check_plans" : "You can check all the plans that we have!"
+  "check_plans" : "You can check all the plans that we have!",
+  "cancel_plan": "cancelar subscripción"
 
 
 }

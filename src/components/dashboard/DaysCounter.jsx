@@ -3,21 +3,22 @@ import { useTranslation } from "react-i18next";
 import { Link } from 'react-router-dom';
 
 const DaysCounter = ({subscriptionDate, lastPay, setSubPass, subscriptionType}) => {
-
+    
     const [ daysLeft, setDaysLeft ] = useState(0)
     const { t } = useTranslation();
 
     const checkDates = (_date) => {
-        var fechaInicio = new Date();
+        // var fechaInicio = new Date();
         var subs = new Date(_date)
+        
         if (subscriptionType === 'monthly' || subscriptionType === 'limited') {
             var begginingDate = new Date(_date).getTime();
             var fechaFin    = new Date(subs.setDate(subs.getDate()+ 30)).getTime();
-
-            var difference= Math.abs(begginingDate-subs);
+            
+            var difference= Math.abs(fechaFin - begginingDate);
             const days = difference/(1000 * 3600 * 24)
             
-
+            
             if (days > 31) {
                 setSubPass(true)
             } else{
@@ -25,12 +26,15 @@ const DaysCounter = ({subscriptionDate, lastPay, setSubPass, subscriptionType}) 
                 setSubPass(false) 
             }
         } 
+        
         if (subscriptionType === 'annual') {
 
+                
                 var aYearFromNow = new Date(_date);
                 aYearFromNow.setFullYear(aYearFromNow.getFullYear() + 1);
                 
-                var diff =  Math.floor(( Date.parse(aYearFromNow) - Date.parse(subs) ) / 86400000);
+                
+                var diff =  Math.floor(( Date.parse(aYearFromNow) - Date.parse(new Date(_date)) ) / 86400000);
                 
                 setDaysLeft(diff)
             if (diff > 365 ) {
@@ -54,16 +58,26 @@ const DaysCounter = ({subscriptionDate, lastPay, setSubPass, subscriptionType}) 
 
         if (lastPay !== null) {
             checkDates(lastPay)
-        }
-        if (subscriptionDate !== undefined && subscriptionDate !== null ) {
+        } 
+        if (subscriptionType === 'limited') {
             checkDates(subscriptionDate)
         }
 
-    }, [subscriptionDate, checkDates, lastPay])
+    }, [subscriptionDate, lastPay, subscriptionType])
     return (
         <div>
-            { daysLeft} {t('expiration_date')} <br/>
-             <Link to="/shop" className="plans-link"> {t('see_plans')} </Link>
+            {
+                subscriptionType === 'unlimited' ? (
+                    <>
+                       unlimited {t('expiration_date')} <br/>
+                    </>
+                ) : (
+                    <>
+                        { daysLeft} {t('expiration_date')} <br/>
+                        <Link to="/shop" className="plans-link"> {t('see_plans')} </Link>
+                    </>
+                )
+            } 
         </div>
     )
 }

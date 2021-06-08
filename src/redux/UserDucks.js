@@ -325,7 +325,6 @@ export const updateUserSubscription = (email, plan, payPalId) => async(dispatch,
         type: LOADING
     })
     const { user } = getState().user
-    console.log('actu');
     
     try {
 

@@ -47,7 +47,7 @@ const FinalBoard = ({masterBoard, setMasterBoard, innerW, innerH}) => {
             
         });
         return unsubscribePositions
-     }, [])
+     }, [setMasterBoard, password])
 
      useEffect(() => {
         positions.length = 0

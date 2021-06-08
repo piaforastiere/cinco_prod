@@ -25,7 +25,7 @@ const GameMaster = () => {
 
     const { t } = useTranslation();
 
-    const active = useSelector(store => store.games.active)
+    // const active = useSelector(store => store.games.active)
     const gameData = useSelector(store => store.games.gameData)
     const sessionOver = useSelector(store => store.games.sessionOver)
     

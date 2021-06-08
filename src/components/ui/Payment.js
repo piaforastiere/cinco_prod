@@ -22,6 +22,18 @@ export const ContainerPayment = styled.div`
         left: 0;
         z-index: 0;
     }
+
+    #cancel_button{
+        width: 500px;
+        margin: auto;
+
+        button{
+            width: 100%;
+            height: 45px;
+            font-weight: 500;
+            letter-spacing: 2;
+        }
+    }
     
 `
 
@@ -68,12 +80,12 @@ export const Plan = styled.div`
         color: #f2f2f2;
         /* background-color: orange; */
         flex-direction: column;
-        justify-content: baseline;
+        justify-content: center;
         text-align: center;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: bottom;
-        padding-top: 25px;
+        /* padding-top: 25px; */
         &.free{
             background-image: url(${freePlan});
         }
@@ -102,7 +114,7 @@ export const Plan = styled.div`
            }
         }
         .name{
-            font-size: 20px;
+            font-size: 40px;
             margin-bottom: 10px;
             font-weight: 600;
             text-shadow: 2px 2px 2px #262626;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link, NavLink, withRouter } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logOutAction } from '../redux/UserDucks'

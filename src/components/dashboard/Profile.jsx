@@ -102,6 +102,7 @@ const Profile = () => {
                                 {t('change_profile_pic')}
                         </label>
                     </div>
+
                     </div>
                     </div>
                 </div>

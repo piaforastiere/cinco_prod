@@ -24,42 +24,40 @@ const Dashboard = (props) => {
     const user = useSelector(store => store.user.user)
     const subscriptionDate = useSelector(store => store.user.user.subscriptionDate)
     const subscriptionType = useSelector(store => store.user.user.subscriptionType)
-    const dispatch = useDispatch()
-
-    console.log('user', user);
+    const loading = useSelector(store => store.games.loading)
     
-
     const [ subPass, setSubPass] = useState(false)
     const [ lastPay, setLastPay ] = useState(null)
     
-    
-    
-
-    const loading = useSelector(store => store.games.loading)
-    
+    const dispatch = useDispatch()
     const { t } = useTranslation();
 
-    
-
-    useEffect(() => {
-        
-       if (user !== undefined && user.payPalId !== null) {
-          
-        const call =  axios({
+    const getPayPalInfo = () => {
+        axios({
             url: 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/'+user.payPalId,
             method: 'get',
-            headers: { "Content-Type": "application/json", "Authorization": "Bearer A21AAKDQtdWliyBLJ1Gj7Zw84df3rKQX3kcKA4gy_5zN3qrB2oJ1aLoLWmuMz_s2ViFVWgnL9NAxeR5N-LvEHIkhzrT3Nsy0Q" },
+            headers: { "Content-Type": "application/json", "Authorization": "Bearer A21AAKMfkdtvVw36U5xEe4zrJEw7Bk4E01u-ePYojgTEupCDuxGAOVU7NITyQyzaHplt00haVAp2WLumabmdCRskt5WCIkMEg" },
             data: { "reason": "test -- Not satisfied with the service" }
         }).then(res => {
-                console.log('axios', res.data.billing_info.last_payment.time)
-                setLastPay(res.data.billing_info.last_payment.time)
+                
+                var dateResult=res.data.billing_info.last_payment.time.split('T')
+                
+                setLastPay(dateResult[0])
+                
             }).catch(error => {
                 console.log(error);
                 setLastPay(null)
               });
+    }
+
+    useEffect(() => {
+        
+        
+       if (user !== undefined && user.payPalId !== null) {
+          
+        getPayPalInfo()
+              
        }
-        
-        
             
       }, [user])
 

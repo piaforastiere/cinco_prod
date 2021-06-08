@@ -254,6 +254,6 @@
     "try_others" : "Por favor intenta con los otros",
     "expiration_date": " hasta que caduque tu subscripción",
     "see_plans" : "Todos los planes de subscripción",
-    "check_plans" : "¡Mira los planes que tenemos!"
-
+    "check_plans" : "¡Mira los planes que tenemos!",
+    "cancel_plan": "cancelar subscripción"
   }

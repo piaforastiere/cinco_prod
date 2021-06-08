@@ -4,11 +4,9 @@ import { Link } from 'react-router-dom';
 import { BiRightArrow} from "react-icons/bi";
 import { VscOpenPreview } from "react-icons/vsc";
 
-import { useTranslation } from "react-i18next";
 
-const Item = ({game, progress}) => {
+const Item = ({game, progress}) => {  
     
-    const { t } = useTranslation();
     
     return (
         <tr id={game.password} >

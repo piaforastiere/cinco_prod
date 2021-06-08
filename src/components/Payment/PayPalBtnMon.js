@@ -6,20 +6,18 @@ import { useTranslation } from "react-i18next";
 
 import { singupEmailAndPassAction, updateUserSubscription } from '../../redux/UserDucks';
 
+import { analytics } from '../../firebase'
 
-
-const PayPalBtn = ({ amount, currency, idPlan, setIdPlan, plan, userName, pass, email, setError }) => {
+const PayPalBtn = ({ amount, currency, idPlan, plan, userName, pass, email, setError }) => {
 
     
     const user = useSelector(store => store.user.user)
     
     const dispatch = useDispatch()
     
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
     
     let history = useHistory();
-
-
 
     const paypalKey = "ASaLtDMhmfcijj7X4V78XDa4RmOBDLqRQUir5QsNE7z6uPOBxLMoPNry-tarSEZirfbkAYudTwXgaQUu"
 
@@ -37,6 +35,7 @@ const PayPalBtn = ({ amount, currency, idPlan, setIdPlan, plan, userName, pass, 
     
     useEffect(() => {
         if (approved) {
+            analytics.logEvent('purchase');
             if (user !== undefined) {
                 dispatch(updateUserSubscription(email, plan, payPalId ))
                 history.push("/dashboard");
@@ -48,7 +47,7 @@ const PayPalBtn = ({ amount, currency, idPlan, setIdPlan, plan, userName, pass, 
             
         }
         
-    }, [approved])
+    }, [approved, user, history, email, plan, payPalId, userName, pass, dispatch])
 
     const onError = (err) => {
         
@@ -61,7 +60,7 @@ const PayPalBtn = ({ amount, currency, idPlan, setIdPlan, plan, userName, pass, 
         console.log("Cancel", err)
         
     }
-    console.log('user', user);
+    
     
     const onApprove = (data, detail) => {
         
@@ -70,14 +69,13 @@ const PayPalBtn = ({ amount, currency, idPlan, setIdPlan, plan, userName, pass, 
         // call the backend api to store transaction details
         //console.log("Payapl approved")
                 
-        console.log(data.subscriptionID)
         setApproved(true)
         
     };
-    useEffect(() => {
-        console.log(idPlan);
+    // useEffect(() => {
+    //     console.log(idPlan);
         
-    }, [idPlan])
+    // }, [idPlan])
 
     return(
         <>

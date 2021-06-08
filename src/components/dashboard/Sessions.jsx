@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { IoChevronBackCircleOutline } from "react-icons/io5";
 
 import { useTranslation } from "react-i18next";
-import Item from './session list/Item';
+
 import Unfilter from './session list/Unfilter';
 import Filtered from './session list/Filtered';
 
@@ -38,7 +38,7 @@ const Sessions = () => {
     }
    
     useEffect(() => {
-        console.log(filterGames.length);
+        // console.log(filterGames.length);
         
         if(filter !== null){
             const _filter = games.filter(filterArray)

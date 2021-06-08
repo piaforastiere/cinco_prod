@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { googleLoginAction, singupEmailAndPassAction } from '../../redux/UserDucks'
+import { useSelector } from 'react-redux'
 
-
-import { FaGoogle } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import PayPalBtn from './PayPalBtnMon';
 import { Title, FormContainer } from '../ui/Payment';
@@ -45,7 +42,7 @@ const RegistrationForm = ({idPlan, amount}) => {
             setPlan("limited")
         }
         
-    },[])
+    },[idPlan, user, email])
 
     const checkEmail = () => {
         const validation = !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)

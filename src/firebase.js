@@ -3,6 +3,7 @@ import 'firebase/auth'
 import 'firebase/firestore'
 import 'firebase/storage'
 import 'firebase/database'
+import 'firebase/analytics';
 
 const firebaseConfig = {
     apiKey: "AIzaSyD7hAh_DFPwLOwOKipcBZfosgxImB6PhlA",
@@ -15,11 +16,17 @@ const firebaseConfig = {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  
+  
 
   const auth = firebase.auth()
   const db = firebase.firestore()
   const storage = firebase.storage()
   const database = firebase.database()
+  const analytics = firebase.analytics()
   // const provider = new firebase.auth.GoogleAuthProvider()
 
-  export { auth, firebase, db, storage, database}
+  firebase.analytics().logEvent('login');
+  firebase.analytics().logEvent('sign_up');
+
+  export { auth, firebase, db, storage, database, analytics}

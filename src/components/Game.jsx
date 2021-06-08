@@ -18,7 +18,7 @@ const Game = () => {
     
     const { t } = useTranslation();
 
-    const active = useSelector(store => store.games.active)
+    // const active = useSelector(store => store.games.active)
     const gameData = useSelector(store => store.games.gameData)
     // const theme = useSelector(store => store.games.theme)
     const password = useSelector(store => store.games.password)
