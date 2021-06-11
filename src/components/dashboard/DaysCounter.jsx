@@ -17,17 +17,17 @@ const DaysCounter = ({subscriptionDate, setSubPass, subscriptionType}) => {
     useEffect(() => {
         
         
-        if (user.payPalId !== null && user.payPalId !== undefined) {
-            axios({
-                url: 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/'+user.payPalId,
-                method: 'get',
-                headers: { "Content-Type": "application/json", "Authorization": "Bearer A21AAL0i19stzXv9OsDIAcc72lySlmaGcyxuFsENX8FMV09HNijxbdZlKTwIl-PGuZ-3i6RAWHZdBMtMSHCx7b3yuP8b_HvfA" },
-                data: { "reason": "test -- Not satisfied with the service" }
-            }).then(res =>{
-                console.log('aca', res)
+        // if (user.payPalId !== null && user.payPalId !== undefined) {
+        //     axios({
+        //         url: 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/'+user.payPalId,
+        //         method: 'get',
+        //         headers: { "Content-Type": "application/json", "Authorization": "Bearer A21AAL0i19stzXv9OsDIAcc72lySlmaGcyxuFsENX8FMV09HNijxbdZlKTwIl-PGuZ-3i6RAWHZdBMtMSHCx7b3yuP8b_HvfA" },
+        //         data: { "reason": "test -- Not satisfied with the service" }
+        //     }).then(res =>{
+        //         // console.log('aca', res)
                 
-            })
-        }
+        //     })
+        // }
         
         
     }, [user])

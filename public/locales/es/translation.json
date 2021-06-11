@@ -261,5 +261,17 @@
     "check_plans" : "¡Mira los planes que tenemos!",
     "cancel_plan": "cancelar subscripción",
     "subscription_type" : "Subscripción activa",
-    "unlimited" : "ilimitada"
+    "unlimited" : "ilimitada",
+
+    "only_30" : "Solo por 30 días",
+    "create_sessions" : "Creación de partidas",
+
+    "single_session" : "Partida Individual",
+    "group_session" : "Partida Grupal",
+    "download_book" : "Descarga el libro:",
+    "book_name": "“Tus 5 Poderes”",
+    "annual_cost" : "Costo anual: ",
+    "saved" : "Ahorra: ",
+
+    "cancelations_text" : "Las cancelaciones pueden tomar entre 7-10 día habiles en ser efectivas"
   }

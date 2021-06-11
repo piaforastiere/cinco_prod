@@ -74,8 +74,8 @@ const Plans = ({setIdPlan, setAmout, setPhase, user}) => {
                         <div className="description">
                             <ul>
                                 <li>{t('one_time')}</li>
-                                <li>lorem ipsum</li>
-                                <li>lorem ipsum</li>
+                                <li>{t('only_30')}</li>
+                                <li>{t('create_sessions')}</li>
                             </ul>
                         </div>
                         </div>
@@ -92,6 +92,9 @@ const Plans = ({setIdPlan, setAmout, setPhase, user}) => {
                             <div className="name">
                                 {t('monthly')}
                             </div>
+                            <div className="saved">
+                                <p className="text-uppercase"> <span className="text-uppercase">{t('annual_cost')}</span> u$119.80</p>
+                            </div>
                         </div>
                         <div className="row">
                         <div className="price">
@@ -103,9 +106,9 @@ const Plans = ({setIdPlan, setAmout, setPhase, user}) => {
                         </div>
                         <div className="description">
                             <ul>
-                                <li>Lorem ipsum</li>
-                                <li>lorem ipsum</li>
-                                <li>anual: u$119.80</li>
+                                <li>{t('single_session')}</li>
+                                <li>{t('group_session')}</li>
+                                <li>{t('download_book')} <br/> {t('book_name')} </li>
                             </ul>
                         </div>
                         </div>
@@ -120,6 +123,9 @@ const Plans = ({setIdPlan, setAmout, setPhase, user}) => {
                             <div className="name">
                                 {t('annual')}
                             </div>
+                            <div className="saved">
+                                <p className="text-uppercase"> <span className="text-uppercase">{t('saved')}</span>  u$9.80</p>
+                            </div>
                         </div>
                         <div className="row">
                         <div className="price">
@@ -131,9 +137,10 @@ const Plans = ({setIdPlan, setAmout, setPhase, user}) => {
                         </div>
                         <div className="description">
                             <ul>
-                                <li>lorem ipsum</li>
-                                <li>lorem ipsum</li>
-                                <li>SAVED : u$19.80</li>
+                                <li>{t('single_session')}</li>
+                                <li>{t('group_session')}</li>
+                                <li>{t('download_book')} <br/> {t('book_name')} </li>
+                                <li className="text-uppercase"> <span className="text-uppercase">{t('saved')}</span>  u$9.80</li>
                             </ul>
                         </div>
                         </div>

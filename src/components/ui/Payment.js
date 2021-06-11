@@ -27,6 +27,13 @@ export const ContainerPayment = styled.div`
         width: 500px;
         margin: auto;
 
+        p{
+            color: #ffffff;
+            font-size: 16px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-top: 20px;
+        }
         button{
             width: 100%;
             height: 45px;
@@ -66,7 +73,7 @@ export const Plan = styled.div`
     border-radius: 30px;
     width: 32%;
     z-index: 1;
-    overflow: hidden;
+    /* overflow: hidden; */
     background-color: #fff;
 
     &.block{
@@ -85,6 +92,9 @@ export const Plan = styled.div`
         background-size: cover;
         background-repeat: no-repeat;
         background-position: bottom;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        position: relative;
         /* padding-top: 25px; */
         &.free{
             background-image: url(${freePlan});
@@ -119,6 +129,23 @@ export const Plan = styled.div`
             font-weight: 600;
             text-shadow: 2px 2px 2px #262626;
             text-transform: uppercase;
+        }
+        .saved{
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            background-color: #953881;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+
+            p{
+                margin: 0;
+                font-weight: 500;
+                font-size: 18px;
+            }
         }
     }
     .row{

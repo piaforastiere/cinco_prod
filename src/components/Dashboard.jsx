@@ -17,7 +17,6 @@ import SubscriptionPass from './dashboard/SubscriptionPass';
 import { analytics } from '../firebase';
 import ProfileSection from './dashboard/profile/ProfileSection';
 
-
 const Dashboard = (props) => {
 
     const user = useSelector(store => store.user.user)
@@ -53,7 +52,7 @@ const Dashboard = (props) => {
         props.history.push('/login')
     }
 
-    useEffect(() => {
+    useEffect(async() => {
         document.querySelector('.navbar').style.display = "flex"
         document.querySelector('.LanguageSelector').style.display = "flex"
         document.querySelector('.navbar').classList.remove('active')

@@ -257,7 +257,19 @@
   "check_plans" : "You can check all the plans that we have!",
   "cancel_plan": "cancel subscription",
   "subscription_type" : "Active subscription",
-  "unlimited" : "unlimited"
+  "unlimited" : "unlimited",
+
+  "only_30" : "Available for 30 days only",
+  "create_sessions" : "Create Sessions",
+
+  "single_session" : "Single session",
+  "group_session" : "Group Session",
+  "download_book" : "Book “Your 5 Powers”",
+  "book_name" : "(downloadable)",
+  "annual_cost" : "Annual cost: ",
+  "saved" : "SAVED: ",
+
+  "cancelations_text" : "Cancellations can take between 7-10 business days to be effective"
 
 
 }

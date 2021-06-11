@@ -34,28 +34,22 @@ const CancelButton = ({user}) => {
             });
     }
     
-    
-    
     useEffect(() => {
-        console.log(user);
-        
-        if( user !== undefined ){
-            
+         if( user !== undefined ){
             if (user.subscriptionType === 'limited') {
-                
-                
                 document.getElementById('cancel_button').style.display = 'none'
             }
-            
         }
         analytics.logEvent('screen_view', { firebase_screen: location.pathname});
     }, [user])
 
     return (
         <div id="cancel_button" className="mt-5">
+            
             <button onClick={() => cancelSubscription()}  type="button" className="btn btn-danger rounded-pill text-uppercase">
                 {t('cancel_plan')}
             </button>
+            <p>* {t('cancelations_text')} </p>
         </div>
     )
 }
