@@ -1,7 +1,7 @@
 import {createStore, combineReducers, compose, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 
-import pokeReducer from './pokeDucks'
+
 import userReducer, { readActiveUserAction } from './UserDucks';
 import gamesReducer from './gamesDukes';
 import cardsReducer from './cardsDukes';
@@ -10,7 +10,7 @@ import resumeDukes from './resumeDukes';
 //combine reducers
 //esto es lo unico que cambia
 const rootReducer = combineReducers({
-    pokemons : pokeReducer,
+   
     user: userReducer,
     games: gamesReducer,
     cards: cardsReducer,
