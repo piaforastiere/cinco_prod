@@ -4,14 +4,8 @@ import { Link } from 'react-router-dom';
 import { BiRightArrow} from "react-icons/bi";
 import { VscOpenPreview } from "react-icons/vsc";
 
-import { useTranslation } from "react-i18next";
-import { BsTrash } from 'react-icons/bs'
 
-
-const Item = ({game, progress, handleDelete}) => {
-    
-    const { t } = useTranslation();
-
+const Item = ({game, progress}) => {  
     
     
     return (
@@ -40,9 +34,6 @@ const Item = ({game, progress, handleDelete}) => {
                     )
                 }
             </td>
-            <th className="icon trash" onClick={() => handleDelete(game.password)}>
-                <BsTrash />
-            </th>
         </tr>
     )
 }

@@ -3,6 +3,7 @@ import { device } from '../ui/breakpoints';
 
 import backdash from '../../assets/img/back-dash.jpeg'
 
+
 export const ContainerDash = styled.div`
     background: url(${backdash});
     display: flex;
@@ -12,6 +13,14 @@ export const ContainerDash = styled.div`
     padding: 60px 60px 40px 120px;
     min-height: calc(100vh - 70px); 
 
+    
+    .plans-link{
+        color: #f6ce55;
+        font-weight: 500;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 16px;
+    }
     .spacer{
         width: 60px;
 
@@ -128,16 +137,19 @@ export const Profile = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    height: 100px;
+    height: 110px;
     color:#fff;
+    position: relative;
 
     .img{
-        width: 100px;
-        height: 100px;
+        width: 110px;
+        height: 110px;
         border-radius: 50%;
         margin-right: 20px;
         overflow: hidden;
-
+        -webkit-box-shadow: 0px 0px 37px 2px rgba(0,0,0,1);
+        -moz-box-shadow: 0px 0px 37px 2px rgba(0,0,0,1);
+        box-shadow: 0px 0px 37px 2px rgba(0,0,0,1);
         
         img{
             width: 100%;
@@ -146,18 +158,163 @@ export const Profile = styled.div`
                 height: 100%;
             }
         }
+        
     }
-
+    
     .user-name{
         font-size: 42px;
         font-weight: 300;
+        line-height: 1.2;
     }
     .user-subscription{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
         font-size: 23px;
         font-weight: 200;
-        margin-top: 15px;
+        margin-top: 0px;
+        line-height: 1;
+        
+        .button-cancel{
+            font-size: 18px;
+            line-height: 1.5;
+            text-transform: uppercase;
+            padding: 0;
+            color: #fdcd30;    
+            font-weight: 500;
+            cursor: pointer;
+        }
     }
 `
+
+export const ChangePicContainer = styled.div`
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            top: 0;
+            left: 0;
+            
+            .spinner{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            label{
+                cursor: pointer;
+                opacity: 0;
+                text-transform: uppercase;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .icon{
+                position: absolute;
+                bottom: 0;
+                left: -10px;
+                background-color: #212121;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                color: #fff;
+                font-size: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #c2c4c9;
+
+                svg{
+                    font-size: 22px;
+                }
+            }
+            &:hover{
+                background-color: rgba(33, 33, 33, 0.4);
+                label{
+                    opacity: 1;
+                }
+            }
+`
+
+export const SpinnerPic = styled.div`
+        position: absolute;
+        width: 110px;
+        height: 110px;
+        top: 0;
+        background-color: rgba(33, 33, 33, 0.4);
+
+        .box{
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+            position: relative;
+            /*margin:0 -4px -5px -2px;*/
+            transition: all .2s ease;
+        }
+
+
+        .loader6{
+            position: relative;
+            width: 12px;
+            height: 12px;
+
+            top: 46%;
+            top: -webkit-calc(50% - 6px);
+            top: calc(50% - 6px);
+            left: 46%;
+            left: -webkit-calc(50% - 6px);
+            left: calc(50% - 6px);
+            
+            border-radius: 12px;
+            background-color: #fff;
+            -webkit-transform-origin:  50% 50%;
+                    transform-origin:  50% 50% ;
+            -webkit-animation: loader6 1s ease-in-out infinite;
+                    animation: loader6 1s ease-in-out infinite;
+        }
+
+        .loader6:before{
+            content: "";
+            position: absolute;
+            background-color: rgba(255, 255, 255, .5);
+            top: 0px;
+            left: -25px;
+            height: 12px;
+            width: 12px;
+            border-radius: 12px;
+        }
+
+        .loader6:after{
+            content: "";
+            position: absolute;
+            background-color: rgba(255, 255 ,255 ,.5);
+            top: 0px;
+            left: 25px;
+            height: 12px;
+            width: 12px;
+            border-radius: 12px;
+        }
+
+
+        @-webkit-keyframes loader6{
+            0%{-webkit-transform:rotate(0deg);}
+            50%{-webkit-transform:rotate(180deg);}
+            100%{-webkit-transform:rotate(180deg);}
+        }
+
+        @keyframes loader6{
+            0%{transform:rotate(0deg);}
+            50%{transform:rotate(180deg);}
+            100%{transform:rotate(180deg);}
+        }
+`
+
 export const GamesPlayed = styled.div`
     display: flex;
     align-items: center;
@@ -353,6 +510,10 @@ export const NewButton = styled.button`
             box-shadow: 0 0 0;
             outline: none;
             top: 0.5rem;
+          }
+
+          @media screen and (max-width: 768px){
+              margin-top: 20px;
           }
 `
 

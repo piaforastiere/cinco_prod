@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 
 import { FaGoogle } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { analytics } from '../firebase';
 
 const Singup = (props) => {
 
@@ -80,8 +81,8 @@ const Singup = (props) => {
         setError(null)
 
         
-        dispatch(singupEmailAndPassAction(name, email, pass))
-        
+        dispatch(singupEmailAndPassAction(name, email, pass, "limited", null))
+        analytics.logEvent('sign_up');
     }
     return (
         <div className="mt-5 text-center ">

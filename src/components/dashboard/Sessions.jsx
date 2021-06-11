@@ -42,7 +42,7 @@ const Sessions = () => {
     }
    
     useEffect(() => {
-        console.log(filterGames.length);
+        // console.log(filterGames.length);
         
         if(filter !== null){
             const _filter = games.filter(filterArray)

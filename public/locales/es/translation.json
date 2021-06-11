@@ -4,10 +4,12 @@
     "instructions" : "Instrucciones",
     "logout": "Salir",
     "play": "JUGAR",
+    "play_code" : "JUGAR CON CODIGO",
     "singup": "Crear cuenta",
     "language": "Cambiar idioma",
     "reset_password" : "Resetear Contraseña",
     "reset": "Resetear",
+    "shop": "Tienda", 
 
     "lets_play": "A jugar!",
     
@@ -75,6 +77,7 @@
     "file_type_img_profile": "Solo archivos de tipo .png o .jpg son permitidos",
     "edit_name" : "Editar nombre",
     "change_profile_pic" : "Cambiar imagen de perfil",
+    "change" : "cambiar",
  
     "insert_name" : "Por favor inserta tu nombre",
     "shorter_nickname" : "Por favor inserta un nombre mas corto (max. 10 caracteres)",
@@ -219,7 +222,7 @@
     "stages" : "etapas",
     "suggestions" : "Sugerencias",
 
-    "sorry_msg" : "Lo sentimos pero su subscripción ha caducado",
+    "sorry_msg" : "Lo sentimos pero tu subscripción ha caducado",
 
     "login" : "Login",
     "welcome_comunity": "Bienvenido a nuestra comunidad!. ",
@@ -237,6 +240,26 @@
     "already_have_account" : "¿Ya tienes una cuenta?",
     "login_here" : "Ir al login",
     "join" : "Unirse",
-    "confirm_pass2" : "Confirma contraseña"
+    "confirm_pass2" : "Confirma contraseña",
 
+    "plans_title" : "Planes y precios flexibles",
+    "plans_text" : "Elije el plan que mejor se adapte a tus necesidades",
+    "basic": "gratis",
+    "trial" : "30 días",
+    "monthly" : "mensual",
+    "per_month" : "por mes",
+    "annual" : "anual",
+    "per_year" : "por año",
+    "one_time" : "valido solo una vez",
+    "active_subscription" : "subscripcion activa",
+    "verify_data" : "Por favor verifica tus datos",
+    "verify_data_text" : "Si los datos no son los correctos, deslogueate e ingresa con la cuenta correcta",
+    "we_are_sorry" : "Lo sentimos, pero este plan no esta disponible para ti.",
+    "try_others" : "Por favor intenta con los otros",
+    "expiration_date": " hasta que caduque tu subscripción",
+    "see_plans" : "Todos los planes de subscripción",
+    "check_plans" : "¡Mira los planes que tenemos!",
+    "cancel_plan": "cancelar subscripción",
+    "subscription_type" : "Subscripción activa",
+    "unlimited" : "ilimitada"
   }

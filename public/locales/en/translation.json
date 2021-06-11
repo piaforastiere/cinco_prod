@@ -4,8 +4,10 @@
   "instructions" : "Instructions",
   "logout": "Logout",
   "play": "PLAY",
+  "play_code" : "JUGAR CON CODIGO",
   "singup": "Singup",
   "language": "Change language",
+  "shop": "Shop",
 
   "lets_play": "Let's play!",
   
@@ -71,6 +73,7 @@
   "file_type_img_profile": "Only files of type .png or .jpg allowed",
   "edit_name" : "Edit Name",
   "change_profile_pic" : "Change profile image",
+  "change" : "change",
 
   "insert_name" : "Please insert you name",
   "shorter_nickname" : "Please insert a shorter nickname(max. 10 characters)",
@@ -233,8 +236,28 @@
   "already_have_account" : "You already have an account?",
   "login_here" : "Sing in here",
   "join" : "Join",
-  "confirm_pass2" : "Confirm password"
+  "confirm_pass2" : "Confirm password",
 
+  "plans_title" : "Flexible Plans & Pricing",
+  "plans_text" : "Select plan that better suits your necesities",
+  "basic": "Free trial",
+  "trial" : "30 days",
+  "monthly" : "monthly",
+  "per_month" : "per month",
+  "annual" : "annual",
+  "per_year" : "per year",
+  "one_time" : "one time only",
+  "active_subscription" : "active subscription",
+  "verify_data" : "Please verify your data",
+  "verify_data_text" : "If this is not the correct account, logout yourself and login with the correct user",
+  "we_are_sorry" : "We are sorry but this plan is not available for you.",
+  "try_others" : "Please try with the others",
+  "expiration_date": " till your subscription expired",
+  "see_plans" : "All subscription plans",
+  "check_plans" : "You can check all the plans that we have!",
+  "cancel_plan": "cancel subscription",
+  "subscription_type" : "Active subscription",
+  "unlimited" : "unlimited"
 
 
 }

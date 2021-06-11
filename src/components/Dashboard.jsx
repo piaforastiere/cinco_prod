@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { withRouter } from 'react-router-dom';
+import { withRouter, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 
 import Spinner from './Spinner'
 import { getAllGamesAction, returnToZeroState } from '../redux/gamesDukes'
 
+import { ContainerDash} from './ui/Dashboard'
 
-
-import { ContainerDash, Profile } from './ui/Dashboard'
-import emptyPhoto from '../assets/img/empty-photo.png'
-import { logOutAction } from '../redux/UserDucks';
+import { logOutAction, updateStatePayPal } from '../redux/UserDucks';
 import Menu from './dashboard/Menu';
 import Sessionslist from './dashboard/Sessionslist';
 import GamesInformation from './dashboard/GamesInformation';
 
-import { useTranslation } from "react-i18next";
 import SubscriptionPass from './dashboard/SubscriptionPass';
+
+import { analytics } from '../firebase';
+import ProfileSection from './dashboard/profile/ProfileSection';
 
 
 const Dashboard = (props) => {
@@ -23,29 +23,22 @@ const Dashboard = (props) => {
     const user = useSelector(store => store.user.user)
     const subscriptionDate = useSelector(store => store.user.user.subscriptionDate)
     const subscriptionType = useSelector(store => store.user.user.subscriptionType)
-    const dispatch = useDispatch()
-
-    const [ subPass, setSubPass] = useState(false)
-    
-    const checkDates = () => {
-        const today = new Date()
-        const subs = new Date(subscriptionDate)
-
-        var difference= Math.abs(today-subs);
-        const days = difference/(1000 * 3600 * 24)
-        
-        if (days > 31 && subscriptionType === 'limited') {
-            setSubPass(true)
-        } else {
-            setSubPass(false) 
-        }
-        
-        
-    }
-
     const loading = useSelector(store => store.games.loading)
     
-    const { t } = useTranslation();
+    const [ subPass, setSubPass] = useState(false)
+    
+    
+    const dispatch = useDispatch()
+    const location = useLocation();
+
+    
+    useEffect(() => {
+        
+       if (user !== undefined && user.payPalId !== null && user.payPalId !== undefined) {
+        dispatch(updateStatePayPal(user.payPalId))
+       }
+       
+      }, [user, dispatch])
 
     useEffect(() => {
         
@@ -53,14 +46,6 @@ const Dashboard = (props) => {
         dispatch(returnToZeroState())
 
     },[dispatch])
-
-    useEffect(() => {
-
-        if (subscriptionDate !== undefined && subscriptionDate !== null) {
-            checkDates()
-        }
-
-    }, [subscriptionDate, checkDates])
 
     const logout = () => {
         dispatch(logOutAction())
@@ -74,34 +59,19 @@ const Dashboard = (props) => {
         document.querySelector('.navbar').classList.remove('active')
         document.querySelector('.LanguageSelector').classList.remove('active')
         
+        analytics.logEvent('screen_view', { firebase_screen: location.pathname});
+
     },[])
     
     return !loading ? (
         <ContainerDash >
+            
             {
                 subPass && <SubscriptionPass />
             }
             <div className="row">
             <div className="col-12 mb-5 profile">
-                <Profile>
-                <div  className="img"  >
-                                    {
-                                        user.photoURL !== null && user.photoURL !== undefined ? (
-                                            <img src={user.photoURL} alt=""/>
-                                        ) : (
-                                            <img src={emptyPhoto} alt=""/>
-                                        )
-                                    }
-                </div>
-                <div>
-                    <div className="user-name">
-                       {t('welcome')}, { user.displayName }!
-                    </div>
-                    <div className="user-subscription">
-                        { user.email}
-                    </div>
-                </div>
-                </Profile>
+                <ProfileSection subscriptionDate={subscriptionDate} lastPay={user.payPalLastPay} setSubPass={setSubPass} subscriptionType={subscriptionType} />
             </div>
             </div>
             <div className="row">

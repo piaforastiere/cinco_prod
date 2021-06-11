@@ -1,14 +1,17 @@
 import { firebase, auth, db, storage } from '../firebase'
+import axios from 'axios'
 
 const initialData = {
     loading: false,
     active: false,
     error: null,
+    loadingPhoto: false,
 }
 
 const LOADING = 'LOADING'
 const USER_ERROR = 'USER_ERROR'
 const USER_SUCCESS = 'USER_SUCCESS'
+const LOADING_PHOTO = 'LOADING_PHOTO'
 const LOGOUT_SESSION = 'LOGOUT_SESSION'
 
 
@@ -16,6 +19,8 @@ export default function userReducer(state = initialData, action){
     switch (action.type) {
         case LOADING:
             return { ...state, loading: true}
+        case LOADING_PHOTO:
+            return { ...state, loadingPhoto: action.payload}
         case USER_ERROR:
             return {  ...state, error: action.payload}
         case USER_SUCCESS:
@@ -27,7 +32,9 @@ export default function userReducer(state = initialData, action){
     }
 }
 
-export const singupEmailAndPassAction = (name, email, pass) => async(dispatch) => {
+
+
+export const singupEmailAndPassAction = (name, email, pass, plan, payPalId) => async(dispatch) => {
     dispatch({
         type: LOADING
     })
@@ -45,7 +52,8 @@ export const singupEmailAndPassAction = (name, email, pass) => async(dispatch) =
             photoURL: res.user.photoURL,
             displayName: name,
             subscriptionDate: res.user.metadata.creationTime,
-            subscriptionType: 'limited',
+            subscriptionType: plan,
+            payPalId: payPalId,
         }
 
     
@@ -254,7 +262,8 @@ export const logOutAction = () => (dispatch) => {
 export const updateUserAction = (updatedName) => async (dispatch, getState ) => {
 
     dispatch({
-        type: LOADING
+        type: LOADING,
+        payload: true
     })
 
     const { user } = getState().user
@@ -275,6 +284,10 @@ export const updateUserAction = (updatedName) => async (dispatch, getState ) => 
             type: USER_SUCCESS,
             payload: updatedUser
         })
+        dispatch({
+            type: LOADING,
+            payload: false
+        })
         
         localStorage.setItem('user', JSON.stringify(updatedUser))
     } catch (error) {
@@ -285,7 +298,8 @@ export const updateUserAction = (updatedName) => async (dispatch, getState ) => 
 
 export const editProfilePhotoAction = (newImg) => async(dispatch, getState) => {
     dispatch({
-        type: LOADING
+        type: LOADING_PHOTO,
+        payload: true
     })
 
     const { user } = getState().user
@@ -309,6 +323,10 @@ export const editProfilePhotoAction = (newImg) => async(dispatch, getState) => {
             type: USER_SUCCESS,
             payload: updatedUser
         })
+        dispatch({
+            type: LOADING_PHOTO,
+            payload: false
+        })
 
         localStorage.setItem('user', JSON.stringify(updatedUser))
     } catch (error) {
@@ -317,3 +335,62 @@ export const editProfilePhotoAction = (newImg) => async(dispatch, getState) => {
     }
 }
 
+export const updateUserSubscription = (email, plan, payPalId) => async(dispatch, getState) => {
+    dispatch({
+        type: LOADING
+    })
+    const { user } = getState().user
+    
+    try {
+
+        await db.collection('users').doc(email).update({
+            subscriptionType: plan,
+            payPalId: payPalId, 
+        })
+
+        const updatedUser = {
+            ...user,
+            subscriptionType: plan,
+            payPalId: payPalId
+        }
+
+        dispatch({
+            type: USER_SUCCESS,
+            payload: updatedUser
+        })
+        
+        localStorage.setItem('user', JSON.stringify(updatedUser))
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+export const updateStatePayPal = (payPalId) => async (dispatch, getState) => {
+    
+    const { user } = getState().user
+
+    try {
+        const call = axios({
+            url: 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/'+payPalId,
+            method: 'get',
+            headers: { "Content-Type": "application/json", "Authorization": "Basic ASaLtDMhmfcijj7X4V78XDa4RmOBDLqRQUir5QsNE7z6uPOBxLMoPNry-tarSEZirfbkAYudTwXgaQUu:EN0hHZVg8Vfq2g0hAKTdNyzUAY0o1e2it9-JYT8JO9Y5H9SsqXde0v3_RyinLeNJDR4-Bd8sAySUwNPE" },
+            data: { "reason": "test -- Not satisfied with the service" }
+        })
+        const res = await call
+        
+        const updatedUser = {
+            ...user,
+            payPalLastPay: res.data.billing_info.last_payment.time.split('T')
+        }
+        
+        dispatch({
+            type: USER_SUCCESS,
+            payload: updatedUser
+        })
+            
+    } catch (error) {
+        
+        
+    }
+}

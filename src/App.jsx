@@ -22,12 +22,13 @@ import CreateAppointment from './components/dashboard/CreateAppointment';
 import Spinner from './components/Spinner';
 import Game from './components/Game';
 import GameMaster from './components/GameMaster';
-import Workshop from './components/Workshop';
+// import Workshop from './components/Workshop';
 import Sessions from './components/dashboard/Sessions';
 import { Resume } from './components/dashboard/Resume';
 import Instructions from './components/Instructions';
-import LanguageSelector from './components/LanguageSelector'
+// import LanguageSelector from './components/LanguageSelector'
 import Home from './components/Home';
+import Payment from './components/Payment';
 
 
 function App() {
@@ -89,6 +90,7 @@ function App() {
             <Route exact component={Game} path="/game"  />
             <Route exact component={ResetPass} path="/reset"  />
             <Route exact component={Terms} path="/terms-and-conditions"  />
+            <Route exact component={Payment} path="/shop"  />
             <Route exact component={Home} path="/"  />
             
           </Switch>

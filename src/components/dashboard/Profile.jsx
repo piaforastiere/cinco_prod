@@ -12,8 +12,6 @@ const Profile = () => {
 
     const { t } = useTranslation();
     
-    console.log(user);
-    
     const dispatch = useDispatch()
 
     const [ useName, setUserName  ] = useState(user.displayName)
@@ -42,7 +40,6 @@ const Profile = () => {
             
             return
         }
-        console.log(image.type);
         
 
         if (image.type === 'image/jpeg' || image.type === 'image/png') {
@@ -53,7 +50,7 @@ const Profile = () => {
         }
         
     }
-
+    
     return user !== undefined ? (
         <div className="mt-5 text-center" >
             <h3 className="text-center" >
@@ -67,7 +64,20 @@ const Profile = () => {
                     </h5>
                     <p className="card-text mt-3">
                         {t('email')}: {user.email}
+                        {
+                            user.subscriptionType === "limited" && <p className="card-text mt-3">{t('subscription_type')}: {t('basic')} </p>
+                        }
+                        {
+                            user.subscriptionType === "monthly" && <p className="card-text mt-3">{t('subscription_type')}: {t('monthly')} </p>
+                        }
+                        {
+                            user.subscriptionType === "annual" && <p className="card-text mt-3">{t('subscription_type')}: {t('annual')} </p>
+                        }
+                        {
+                            user.subscriptionType === "unlimited" && <p className="card-text mt-3">{t('subscription_type')}: {t('unlimited')} </p>
+                        }
                     </p>
+                    
                     <div className="row justify-content-center d-flex mt-5">
                     <div className="col-lg-6 colsm-12 justify-content-around d-flex">
                     {
@@ -102,6 +112,7 @@ const Profile = () => {
                                 {t('change_profile_pic')}
                         </label>
                     </div>
+
                     </div>
                     </div>
                 </div>

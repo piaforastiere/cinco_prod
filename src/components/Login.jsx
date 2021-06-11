@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom'
 import { FcGoogle } from "react-icons/fc";
 
 import { useTranslation } from "react-i18next";
+import { analytics } from '../firebase';
 
 const Login = (props) => {
 
@@ -28,10 +29,13 @@ const Login = (props) => {
     useEffect(() => {
         if (active) {
             props.history.push('/dashboard')
+            
         }
         
     }, [active, props.history])
 
+
+    
 
     const processData = e => {
         e.preventDefault();
@@ -61,8 +65,8 @@ const Login = (props) => {
 
         
         dispatch(loginWithEmailAndPassAction(email, pass))
-            
-       
+        analytics.logEvent('login');
+        analytics.setUserProperties({ is_subscriber: true })
     }
 
     useEffect(() => {
