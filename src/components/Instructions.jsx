@@ -8,10 +8,17 @@ import { useTranslation } from "react-i18next";
 
 import logo from '../assets/img/logo.png'
 
+import { useLocation } from 'react-router-dom'
+import { analytics } from '../firebase';
+
+
 const Instructions = () => {
 
     const { t } = useTranslation();
     const [ scrolling, setScrolling ] = useState(false)
+
+    const location = useLocation();
+    
     
     useEffect(() => {
         document.querySelector('.navbar').style.display = "flex"
@@ -19,6 +26,8 @@ const Instructions = () => {
 
         
         window.addEventListener("scroll", handleScroll);
+        
+        analytics.logEvent('screen_view', { firebase_screen: location.pathname});
     },[])
 
     const handleScroll = () => {

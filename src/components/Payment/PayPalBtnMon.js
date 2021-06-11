@@ -26,22 +26,33 @@ const PayPalBtn = ({ amount, currency, idPlan, plan, userName, pass, email, setE
 
    
     const createSubscription = (data, actions) => {
-        
+        analytics.logEvent('begin_checkout')
         return actions.subscription.create({
         'plan_id': idPlan,
         });
     };
 
     
+    
+    
     useEffect(() => {
         if (approved) {
-            analytics.logEvent('purchase');
+            
+            const data = {
+                currency: "USD", 
+                value: amount, 
+                transaction_id: payPalId
+            }
+            
+            analytics.logEvent('purchase', data );
+            
             if (user !== undefined) {
                 dispatch(updateUserSubscription(email, plan, payPalId ))
                 history.push("/dashboard");
             } else {
                 
                 dispatch(singupEmailAndPassAction(userName, email, pass, plan, payPalId))
+                analytics.logEvent('sign_up');
                 history.push("/dashboard");
             }
             
@@ -68,7 +79,8 @@ const PayPalBtn = ({ amount, currency, idPlan, plan, userName, pass, email, setE
         setPayPalId(data.subscriptionID)
         // call the backend api to store transaction details
         //console.log("Payapl approved")
-                
+        console.log(data);
+        
         setApproved(true)
         
     };

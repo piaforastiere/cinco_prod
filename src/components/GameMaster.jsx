@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 import EmailCheckMaster from './game/checks/EmailCheckMaster'
 import ThemeForm from './game/checks/ThemeForm'
 import Boardgame from './game/boardgame/Boardgame'
 import Backboard from './game/backboard/Backboard'
-import { db } from '../firebase'
+import { db, analytics } from '../firebase'
 
 import { IoChevronBackCircleOutline } from "react-icons/io5";
 // import {useLocation} from "react-router-dom";
@@ -31,6 +31,7 @@ const GameMaster = () => {
     
     const { password } = useParams()
     
+    const location = useLocation();
     // const theme = useSelector(store => store.games.theme)
     
     const [ progressDB, setProgressDB ] = useState(null)
@@ -91,6 +92,7 @@ const GameMaster = () => {
         
         document.querySelector('.LanguageSelector').classList.remove('active')
         
+        analytics.logEvent('screen_view', { firebase_screen: location.pathname});
     },[])
    
 

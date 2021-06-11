@@ -9,7 +9,7 @@ import { FormContainer, Title } from '../ui/Payment'
 const UpdateForm = ({user, idPlan, amount, setPhase}) => {
     
     //CHEQUEAR EL PAYPALID Y LA FECHA DEL ULTIMO PAGO!!
-    console.log(idPlan);
+    // console.log(idPlan);
     
     const { t } = useTranslation();
 

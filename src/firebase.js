@@ -25,8 +25,8 @@ const firebaseConfig = {
   const database = firebase.database()
   const analytics = firebase.analytics()
   // const provider = new firebase.auth.GoogleAuthProvider()
-
-  firebase.analytics().logEvent('login');
-  firebase.analytics().logEvent('sign_up');
+  
+  
+  
 
   export { auth, firebase, db, storage, database, analytics}

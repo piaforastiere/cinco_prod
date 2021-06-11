@@ -71,6 +71,7 @@
   "file_type_img_profile": "Only files of type .png or .jpg allowed",
   "edit_name" : "Edit Name",
   "change_profile_pic" : "Change profile image",
+  "change" : "change",
 
   "insert_name" : "Please insert you name",
   "shorter_nickname" : "Please insert a shorter nickname(max. 10 characters)",
@@ -251,7 +252,9 @@
   "expiration_date": " till your subscription expired",
   "see_plans" : "All subscription plans",
   "check_plans" : "You can check all the plans that we have!",
-  "cancel_plan": "cancelar subscripción"
+  "cancel_plan": "cancel subscription",
+  "subscription_type" : "Active subscription",
+  "unlimited" : "unlimited"
 
 
 }

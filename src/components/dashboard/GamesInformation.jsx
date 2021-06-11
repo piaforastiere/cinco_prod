@@ -28,12 +28,12 @@ const GamesInformation = () => {
                     </div>
                     <div className="line"></div>
                     <div>
-                        <h2>{games === undefined ? '0' : games.filter(game => game.progress !== 'unactive' ).length}</h2>
+                        <h2>{games === undefined ? '0' : games.filter(game => game.progress !== 'unactive').length}</h2>
                         <p>{t("games_played")}</p>
                     </div>
                     <div className="line"></div>
                     <div>
-                        <h2>{games === undefined ? '0' : games.filter(game => game.progress !== 'finished' ).length}</h2>
+                        <h2>{games === undefined ? '0' : games.filter(game => game.progress === 'finished' ).length}</h2>
                         <p>{t("games_finish")}</p>
                     </div>
                     <Link to="/new-game">

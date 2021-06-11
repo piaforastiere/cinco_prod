@@ -50,7 +50,7 @@ export const NavBarContainer = styled.div`
         }
     @media screen and (max-width: 850px){
         #nav-list{
-            width: 55vw;
+            width: 65vw;
         }
     }
     @media screen and (max-width: 600px){

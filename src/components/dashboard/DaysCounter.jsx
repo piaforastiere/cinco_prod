@@ -1,14 +1,39 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from "react-i18next";
-import { Link } from 'react-router-dom';
 
-const DaysCounter = ({subscriptionDate, lastPay, setSubPass, subscriptionType}) => {
+import { useSelector } from 'react-redux';
+import CancelSub from './profile/CancelSub';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+const DaysCounter = ({subscriptionDate, setSubPass, subscriptionType}) => {
     
+    const user = useSelector(store => store.user.user)
+    const lastPay = useSelector(store => store.user.user.payPalLastPay)
     const [ daysLeft, setDaysLeft ] = useState(0)
     const { t } = useTranslation();
+    
+    
+    useEffect(() => {
+        
+        
+        if (user.payPalId !== null && user.payPalId !== undefined) {
+            axios({
+                url: 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/'+user.payPalId,
+                method: 'get',
+                headers: { "Content-Type": "application/json", "Authorization": "Bearer A21AAL0i19stzXv9OsDIAcc72lySlmaGcyxuFsENX8FMV09HNijxbdZlKTwIl-PGuZ-3i6RAWHZdBMtMSHCx7b3yuP8b_HvfA" },
+                data: { "reason": "test -- Not satisfied with the service" }
+            }).then(res =>{
+                console.log('aca', res)
+                
+            })
+        }
+        
+        
+    }, [user])
 
     const checkDates = (_date) => {
-        // var fechaInicio = new Date();
+        
         var subs = new Date(_date)
         
         if (subscriptionType === 'monthly' || subscriptionType === 'limited') {
@@ -55,12 +80,18 @@ const DaysCounter = ({subscriptionDate, lastPay, setSubPass, subscriptionType}) 
     
 
     useEffect(() => {
-
-        if (lastPay !== null) {
-            checkDates(lastPay)
+        
+        if (lastPay !== null && lastPay !== undefined) {
+            checkDates(lastPay[0])
         } 
         if (subscriptionType === 'limited') {
-            checkDates(subscriptionDate)
+            
+            if (lastPay !== undefined && new Date(lastPay[0]).getTime() > new Date(subscriptionDate).getTime() ) {
+                checkDates(lastPay[0])
+                
+            }else{
+                checkDates(subscriptionDate)
+            }
         }
 
     }, [subscriptionDate, lastPay, subscriptionType])
@@ -74,7 +105,11 @@ const DaysCounter = ({subscriptionDate, lastPay, setSubPass, subscriptionType}) 
                 ) : (
                     <>
                         { daysLeft} {t('expiration_date')} <br/>
-                        <Link to="/shop" className="plans-link"> {t('see_plans')} </Link>
+                        
+                        { subscriptionType !== "limited" ?
+                         <CancelSub /> :
+                         <Link to="/shop" className="plans-link"> {t('see_plans')} </Link>
+                        }
                     </>
                 )
             } 

@@ -77,11 +77,6 @@ const CreateAppointment = (props) => {
             setShow(true)
     }
    
-   
-    console.log(dataDB);
-    
-    
-    
     
     useEffect(() => {
         document.querySelector('.navbar').style.display = "flex"

@@ -5,7 +5,8 @@ import { useTranslation } from "react-i18next";
 import { Plan, PlansContainer } from '../ui/Payment'
 
 import { MdAttachMoney } from "react-icons/md";
-import { RiBikeLine, RiEBike2Line, RiCarLine } from "react-icons/ri";
+// import { RiBikeLine, RiEBike2Line, RiCarLine } from "react-icons/ri";
+import { analytics } from '../../firebase';
 
 
 
@@ -18,7 +19,7 @@ const Plans = ({setIdPlan, setAmout, setPhase, user}) => {
         setIdPlan(_idPlan)
         setAmout(_price)
         setPhase(1)
-        //analytics.logEvent('purchase');
+        analytics.logEvent('add_to_cart', {currency: "USD", value: _price, items : _idPlan});
     }
 
     useEffect(() => {

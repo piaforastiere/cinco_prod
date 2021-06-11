@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { withRouter } from 'react-router-dom';
+import { withRouter, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 
 import Spinner from './Spinner'
 import { getAllGamesAction, returnToZeroState } from '../redux/gamesDukes'
 
-import axios from 'axios';
+import { ContainerDash} from './ui/Dashboard'
 
-import { ContainerDash, Profile } from './ui/Dashboard'
-import emptyPhoto from '../assets/img/empty-photo.png'
-import { logOutAction } from '../redux/UserDucks';
+import { logOutAction, updateStatePayPal } from '../redux/UserDucks';
 import Menu from './dashboard/Menu';
 import Sessionslist from './dashboard/Sessionslist';
 import GamesInformation from './dashboard/GamesInformation';
 
-import { useTranslation } from "react-i18next";
 import SubscriptionPass from './dashboard/SubscriptionPass';
-import DaysCounter from './dashboard/DaysCounter';
+
+import { analytics } from '../firebase';
+import ProfileSection from './dashboard/profile/ProfileSection';
 
 
 const Dashboard = (props) => {
@@ -27,39 +26,19 @@ const Dashboard = (props) => {
     const loading = useSelector(store => store.games.loading)
     
     const [ subPass, setSubPass] = useState(false)
-    const [ lastPay, setLastPay ] = useState(null)
+    
     
     const dispatch = useDispatch()
-    const { t } = useTranslation();
+    const location = useLocation();
 
-    const getPayPalInfo = () => {
-        axios({
-            url: 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/'+user.payPalId,
-            method: 'get',
-            headers: { "Content-Type": "application/json", "Authorization": "Bearer A21AAKMfkdtvVw36U5xEe4zrJEw7Bk4E01u-ePYojgTEupCDuxGAOVU7NITyQyzaHplt00haVAp2WLumabmdCRskt5WCIkMEg" },
-            data: { "reason": "test -- Not satisfied with the service" }
-        }).then(res => {
-                
-                var dateResult=res.data.billing_info.last_payment.time.split('T')
-                
-                setLastPay(dateResult[0])
-                
-            }).catch(error => {
-                console.log(error);
-                setLastPay(null)
-              });
-    }
-
+    
     useEffect(() => {
         
-        
-       if (user !== undefined && user.payPalId !== null) {
-          
-        getPayPalInfo()
-              
+       if (user !== undefined && user.payPalId !== null && user.payPalId !== undefined) {
+        dispatch(updateStatePayPal(user.payPalId))
        }
-            
-      }, [user])
+       
+      }, [user, dispatch])
 
     useEffect(() => {
         
@@ -67,8 +46,6 @@ const Dashboard = (props) => {
         dispatch(returnToZeroState())
 
     },[dispatch])
-
-    
 
     const logout = () => {
         dispatch(logOutAction())
@@ -82,6 +59,8 @@ const Dashboard = (props) => {
         document.querySelector('.navbar').classList.remove('active')
         document.querySelector('.LanguageSelector').classList.remove('active')
         
+        analytics.logEvent('screen_view', { firebase_screen: location.pathname});
+
     },[])
     
     return !loading ? (
@@ -92,25 +71,7 @@ const Dashboard = (props) => {
             }
             <div className="row">
             <div className="col-12 mb-5 profile">
-                <Profile>
-                <div  className="img"  >
-                                    {
-                                        user.photoURL !== null && user.photoURL !== undefined ? (
-                                            <img src={user.photoURL} alt=""/>
-                                        ) : (
-                                            <img src={emptyPhoto} alt=""/>
-                                        )
-                                    }
-                </div>
-                <div>
-                    <div className="user-name">
-                       {t('welcome')}, { user.displayName }!
-                    </div>
-                    <div className="user-subscription">
-                        <DaysCounter subscriptionDate={subscriptionDate} lastPay={lastPay} setSubPass={setSubPass} subscriptionType={subscriptionType} />
-                    </div>
-                </div>
-                </Profile>
+                <ProfileSection subscriptionDate={subscriptionDate} lastPay={user.payPalLastPay} setSubPass={setSubPass} subscriptionType={subscriptionType} />
             </div>
             </div>
             <div className="row">
