@@ -1,0 +1,123 @@
+export default [
+    {
+        id: "int-1",
+class: "intu",
+        question:'What is your intuition saying right now about this situation/subject?',
+    title: "intuition", 
+},
+    {
+        id: "int-2",
+class: "intu",
+        question:'What would love do in this situation/subject?',
+    title: "intuition", 
+},
+    {
+        id: "int-3",
+class: "intu",
+        question:'What is it you don’t want to listen?',
+    title: "intuition", 
+},
+    {
+        id: "int-4",
+class: "intu",
+        question:"What is it you don’t know you know?",
+    title: "intuition", 
+},
+    {
+        id: "int-5",
+class: "intu",
+        question:'What are you pretending not to know?',
+    title: "intuition", 
+},
+    {
+        id: "int-6",
+class: "intu",
+        question:'What is more important to you in this situation/subject: your intuition or your reason?',
+    title: "intuition", 
+},
+    {
+        id: "int-7",
+class: "intu",
+        question:'What’s your body saying? Right now, find three registers for this situation/subject',
+    title: "intuition", 
+},
+    {
+        id: "int-8",
+class: "intu",
+        question:'Who are you? Who are you really?',
+    title: "intuition", 
+},
+    {
+        id: "int-9",
+class: "intu",
+        question:'What decision are you postponing?',
+    title: "intuition", 
+},
+    {
+        id: "int-10",
+class: "intu",
+        question:'If God, or any superior energy you believe in spoke to you, what would He say right now?',
+    title: "intuition", 
+},
+    {
+        id: "int-11",
+class: "intu",
+        question:'Which part of you should you invite to make decisions in this situation/subject??',
+    title: "intuition", 
+},
+    {
+        id: "int-12",
+class: "intu",
+        question:'What is waiting to manifest itself in this moment?',
+    title: "intuition", 
+},
+    {
+        id: "int-13",
+class: "intu",
+        question:'What learning is this situation bringing to you?',
+    title: "intuition", 
+},
+    {
+        id: "int-14",
+class: "intu",
+        question:'What is coming to light in this situation/subject?',
+    title: "intuition", 
+},
+    {
+        id: "int-15",
+class: "intu",
+        question:'What inspires you?',
+    title: "intuition", 
+},
+    {
+        id: "int-16",
+class: "intu",
+        question:'What do you want to control?',
+    title: "intuition", 
+},
+    {
+        id: "int-17",
+class: "intu",
+        question:'What would you do if there were no risks?',
+    title: "intuition", 
+},
+    {
+        id: "int-18",
+class: "intu",
+        question:'If you could make three wishes, what would they be?',
+    title: "intuition", 
+},
+    {
+        id: "int-19",
+class: "intu",
+        question:'What is possible for you?',
+    title: "intuition", 
+},
+    {
+        id: "int-20",
+class: "intu",
+        question:'Are you willing to take the risk of following your intuition?',
+    title: "intuition", 
+},
+    
+]
